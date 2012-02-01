@@ -30,19 +30,38 @@
 ;;;; *********************************************************************************************
 (ns ^{:author "Roger Grantham"}
       org.magnopere.ars.grammatica.core
-  (:use [clojure.core] [clojure.tools.cli])
+  (:use [clojure.core] [clojure.tools.cli]
+        [org.magnopere.ars.grammatica.tokenizer])
   (:gen-class))
+
+(declare tag query)
+
+(def prompt "ArsGrammatica> ")
+(def console-reader (jline.ConsoleReader. ))
 
 (defn -main [& args]
   (println "Ars Grammatica")
   (let [[options supplied-args banner]
         (clojure.tools.cli/cli args
-          ["-h" "--help" "Print this help message." :default false :flag true :no-required true]
+          ["-h" "--help" "Print this help message." :default false :flag true ]
           ["-nw" "--noWindow" "Run Ars Grammatica in the console. By default Ars Grammatica runs in a graphical UI" :default false :flag true]
+          ["-t" "--tag" "Accepts input from stdin and writes a tagged token stream to stout."  :default false :flag true ]
           )]
     (when (:help options)
       (println banner))
+    (when (:tag options)
+      (tag))
+    (when (:query options)
+      (query))
     (println options)))
 
+
+(defn tag []
+  (let [input (.readLine console-reader prompt)]
+    (println (tokenize input))
+  (if (= ":quit" input)
+      0
+      (recur))
+    ))
 
 

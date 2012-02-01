@@ -31,6 +31,7 @@
 (defproject ArsGrammatica "0.0.1-SNAPSHOT"
   :description "Ars Grammatica provides Latin morphological and syntactical tutoring and practice."
   :dependencies [[org.clojure/clojure "1.3.0"]
+                 [org.clojure/java.jdbc "0.1.1"]
                  [jline/jline "1.0"]
                  [org.apache.derby/derby "10.8.2.2"]
                  [org.clojure/tools.cli "0.2.1"]]

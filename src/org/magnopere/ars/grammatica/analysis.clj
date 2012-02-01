@@ -30,8 +30,21 @@
 ;;;; *********************************************************************************************
 (ns  ^{:author "Roger Grantham"}
   org.magnopere.ars.grammatica.analysis)
+
 ;;
 ;; Represents a morphological analysis of a word form
 ;;
 
-(defrecord analysis [])
+(defrecord Analysis [form lemma pos person number tense mood voice gender gcase degree definition])
+
+(defmethod print-method org.magnopere.ars.grammatica.analysis.Analysis [analysis writer]
+  (.write writer (str "Analysis#<"
+                   (reduce
+                     #(if (nil? (first (second %2))) %1 (str %1 (if (empty? %1) "" ", ") (first %2) " " (second %2)))
+                     ""
+                     analysis)
+                   (format ">"))))
+
+(defn make-analysis [analysis-data]
+  "Accepts a map of data found in the analysis and creates from it a new analysis"
+  (merge (Analysis. nil nil nil nil nil nil nil nil nil nil nil nil) analysis-data))

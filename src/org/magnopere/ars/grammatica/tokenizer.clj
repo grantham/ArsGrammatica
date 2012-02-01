@@ -30,16 +30,23 @@
 ;;;; *********************************************************************************************
 (ns ^{:author "Roger Grantham"}
   org.magnopere.ars.grammatica.tokenizer
-  (:use [clojure.core])
+  (:use [clojure.core] [org.magnopere.ars.grammatica.data.query])
   (:require [clojure.string :as s]))
 
 ;;
 ;; Represents a tokenized word form with slots for the later analysis and lexicon entry
 ;;  http://docs.oracle.com/javase/6/docs/api/java/text/Normalizer.html
-(defrecord token [word-form analysis entry])
+(defrecord Token [word-form analyses])
 
-(defmethod print-method org.magnopere.ars.grammatica.tokenizer.token [t w]
-  (print-method [ (:word-form t) (:analysis-entry t) (:entry t)] w))
+(defmethod print-method org.magnopere.ars.grammatica.tokenizer.Token [token writer]
+  (.write writer (apply str "Token#<" (:word-form token)))
+  (doseq [analysis (:analyses token)]
+    (.write writer (format "%n\t"))
+    (print-method analysis writer))
+  (.write writer (format ">%n")))
+
+(defn make-token [form]
+  (Token. form (fetch-analyses form)))
 
 (defn rectify-orthography [word]
   "Normalizes Latin orthography to simplest sensible system."
@@ -56,11 +63,11 @@
       (letfn [(next-token [w]
                 (if (empty? w)
                   nil
-                  (lazy-seq (cons (token. (rectify-orthography (first w)) nil nil)
+                  (lazy-seq (cons (make-token (rectify-orthography (first w)))
                               (next-token (rest w))))))]
         (if (empty? words)
           nil
           (lazy-seq
             (cons
-              (token. (rectify-orthography (first words)) nil nil)
+              (make-token (rectify-orthography (first words)))
               (next-token (rest words)))))))))
