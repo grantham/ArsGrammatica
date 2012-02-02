@@ -60,8 +60,8 @@
 (defn fetch-analyses [form]
   "Accepts a word form (which has already been orthographically normalized and returns a list of zero or more analyses."
   (jdbc/with-connection db
-    (jdbc/with-query-results rs [(str "select a.form, a.lemma, a.pos, a.person, a.number, a.tense, a.mood, a.voice, "
-                                   "a.gender, a.gcase, a.degree, b.definition from ARS.morphology a "
-                                   "natural join ARS.lexicon b where a.form = '" form "'")]
+    (jdbc/with-query-results rs [(str "SELECT a.form, a.lemma, a.pos, a.person, a.number, a.tense, a.mood, a.voice, "
+                                      "a.gender, a.gcase, a.degree, b.definition FROM ARS.morphology a INNER JOIN "
+                                      "ARS.lexicon b ON a.lemma = b.lemma WHERE a.form = '" form "'")]
       (doall (map make-analysis rs)))))
 
