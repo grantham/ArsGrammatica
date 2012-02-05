@@ -1,5 +1,5 @@
 ;;;; *********************************************************************************************
-;;;; Copyright (C) $today.year Roger Grantham
+;;;; Copyright (C) 2012 Roger Grantham
 ;;;; 
 ;;;; All rights reserved.
 ;;;; 

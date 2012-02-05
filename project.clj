@@ -36,3 +36,11 @@
                  [org.apache.derby/derby "10.8.2.2"]
                  [org.clojure/tools.cli "0.2.1"]]
   :main org.magnopere.ars.grammatica.core)
+
+;; TODO: add a build set to create the database if it doesn't exist:
+;; 0. Check whether the resources/lexicon database exists, if not:
+;; 1. decompress the *.sql.tar.gz scripts under resources/sql
+;; 2. invoke $ ij lexiconSetup.sql
+;; 3. delete resources/lexicon/tmp if it exists
+
+;; TODO: when the db build step is completed, add a build hook to this script to invoke it before jar or uberjar
