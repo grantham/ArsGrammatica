@@ -35,9 +35,9 @@
 
 
 (deftest tokenize-test
-  (let [tokens (tokenize "μῆνιν ἄειδε θεὰ")]
+  (let [tokens (tokenize :greek "μῆνιν ἄειδε θεὰ")]
     (is (= 3 (count tokens))))
-  (let [tokens (tokenize
+  (let [tokens (tokenize :latin
     "Arma virumque cano, Troiae qui primus ab oris
      Italiam, fato profugus, Laviniaque venit
      litora, multum ille et terris iactatus et alto

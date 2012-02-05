@@ -31,10 +31,10 @@
 (ns ^{:author "Roger Grantham"}
       org.magnopere.ars.grammatica.core
   (:use [clojure.core] [clojure.tools.cli]
-        [org.magnopere.ars.grammatica.tokenizer])
+        [org.magnopere.ars.grammatica.tagger])
   (:gen-class))
 
-(declare tag query)
+(declare tag-input)
 
 (def prompt "ArsGrammatica> ")
 (def console-reader (jline.ConsoleReader. ))
@@ -50,18 +50,15 @@
     (when (:help options)
       (println banner))
     (when (:tag options)
-      (tag))
-    (when (:query options)
-      (query))
+      (tag-input))
     (println options)))
 
 
-(defn tag []
+(defn tag-input []
   (let [input (.readLine console-reader prompt)]
-    (println (tokenize input))
+    (println (tag :latin input))
   (if (= ":quit" input)
       0
-      (recur))
-    ))
+      (recur))))
 
 

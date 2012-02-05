@@ -20,7 +20,7 @@ The data contained in `lexicon.sql` originates from the file `hib_lemmas.sql` in
 columns, eliding records pertaining to languages other than Greek and Latin, and altering the SQL to make it possible
 to import into `Derby` (the original targeted `MySQL`).
 
-The data contained in `lexicon.sql` originated from the Perseus files `greek.morph.xml` and `latin.morph.xml` which
+The data contained in `morphology.sql` originated from the Perseus files `greek.morph.xml` and `latin.morph.xml` which
 are contained in the
 [Greek and Roman collection texts](http://www.perseus.tufts.edu/hopper/opensource/downloads/texts/hopper-texts-GreekRoman.tar.gz)
 and which are released under the

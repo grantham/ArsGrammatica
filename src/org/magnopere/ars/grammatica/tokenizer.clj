@@ -30,44 +30,38 @@
 ;;;; *********************************************************************************************
 (ns ^{:author "Roger Grantham"}
   org.magnopere.ars.grammatica.tokenizer
-  (:use [clojure.core] [org.magnopere.ars.grammatica.data.query])
+  (:use [clojure.core]
+        [org.magnopere.ars.grammatica.token])
   (:require [clojure.string :as s]))
 
-;;
-;; Represents a tokenized word form with slots for the later analysis and lexicon entry
-;;  http://docs.oracle.com/javase/6/docs/api/java/text/Normalizer.html
-(defrecord Token [word-form analyses])
+(declare normalize-latin)
 
-(defmethod print-method org.magnopere.ars.grammatica.tokenizer.Token [token writer]
-  (.write writer (apply str "Token#<" (:word-form token)))
-  (doseq [analysis (:analyses token)]
-    (.write writer (format "%n\t"))
-    (print-method analysis writer))
-  (.write writer (format ">%n")))
-
-(defn make-token [form]
-  (Token. form (fetch-analyses form)))
-
-(defn rectify-orthography [word]
+;; see http://docs.oracle.com/javase/6/docs/api/java/text/Normalizer.html
+(defn normalize-latin [word]
   "Normalizes Latin orthography to simplest sensible system."
   (if (empty? word)
     nil
     (s/replace (s/replace (s/replace word \j \i ) \v \u) \J \I)))
 
-(defn tokenize [char-sequence]
-  "Accepts a sequence of character data and returns a lazy sequence of word form tokens, e.g.
-  (tokenize \"μῆνιν ἄειδε θεὰ\")"
+
+(def normalizer {:latin normalize-latin
+                 :greek #(%)
+                 :greek-betacode #(%) })
+
+(defn tokenize [input-type char-sequence]
+  "Accepts an input-type designator (one of :latin, :greek, :greek-betacode) and a sequence of character data
+    and returns a lazy sequence of word form tokens, e.g. (tokenize \"μῆνιν ἄειδε θεὰ\")"
   (if (empty? char-sequence)
     nil
     (let [words (re-seq #"\p{L}+|\p{Punct}+|\p{Digit}+" char-sequence)]
       (letfn [(next-token [w]
                 (if (empty? w)
                   nil
-                  (lazy-seq (cons (make-token (rectify-orthography (first w)))
+                  (lazy-seq (cons (make-token ((input-type normalizer) (first w)))
                               (next-token (rest w))))))]
         (if (empty? words)
           nil
           (lazy-seq
             (cons
-              (make-token (rectify-orthography (first words)))
+              (make-token ((input-type normalizer) (first words)))
               (next-token (rest words)))))))))
