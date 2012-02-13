@@ -44,4 +44,5 @@ connect 'jdbc:derby:resources/lexicon;create=true';
 run 'resources/sql/language.sql';
 run 'resources/sql/lexicon.sql';
 run 'resources/sql/morphology.sql';
+run 'resources/sql/latin_verb_metadata.sql';
 exit;
