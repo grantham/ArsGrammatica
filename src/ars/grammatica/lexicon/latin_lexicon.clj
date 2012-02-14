@@ -1,5 +1,5 @@
 ;;;; *********************************************************************************************
-;;;; Copyright (C) 2011 Roger Grantham
+;;;; Copyright (C) 2012 Roger Grantham
 ;;;;
 ;;;; All rights reserved.
 ;;;;
@@ -20,7 +20,7 @@
 ;;;;
 ;;;; If you modify ArsGrammatica, or any covered work, by linking or combining it with
 ;;;; clojure or clojure.contrib (or a modified version of that library),
-;;;; containing parts covered by the terms of Eclipse Public License 1.1, the licensors of ArsGrammatica grant
+;;;; containing parts covered by the terms of Eclipse Public License, the licensors of ArsGrammatica grant
 ;;;; you additional permission to convey the resulting work. Corresponding Source for a non-source form
 ;;;; of such a combination shall include the source code for the parts of clojure, clojure.contrib used as
 ;;;; well as that of the covered work.
@@ -28,9 +28,9 @@
 ;;;;
 ;;;; The functions in this file provide access to Latin and Greek morphological and lexical data
 ;;;;
-(ns  org.magnopere.ars.grammatica.data.lexicon
+(ns  ars.grammatica.lexicon.latin_lexicon
   (:use [clojure.core]
-        [org.magnopere.ars.grammatica.analysis])
+        [ars.grammatica.morphology.analysis])
   (:require [clojure.java [jdbc :as jdbc]]))
 
 (declare prepare-ro-db)

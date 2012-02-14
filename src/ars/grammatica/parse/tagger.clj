@@ -20,20 +20,17 @@
 ;;;; 
 ;;;; If you modify ArsGrammatica, or any covered work, by linking or combining it with
 ;;;; clojure or clojure.contrib (or a modified version of that library),
-;;;; containing parts covered by the terms of Mozilla Public License 1.1,
-;;;; or lexicon.sql and language.sql (part of Ars Grammatica) containing parts covered by the terms 
-;;;; of Mozilla Public License 1.1, or morphology.sql (part of Ars Grammatica) containing parts covered 
-;;;; by the terms of the Creative Commons ShareAlike 3.0 License, the licensors of ArsGrammatica grant 
-;;;; you additional permission to convey the resulting work. Corresponding Source for a non-source form 
-;;;; of such a combination shall include the source code for the parts of clojure, clojure.contrib, 
-;;;; lexicon.sql, morphology.sql, and language.sql used as well as that of the covered work.
+;;;; containing parts covered by the terms of Eclipse Public License, the licensors of
+;;;; ArsGrammatica grant you additional permission to convey the resulting work. Corresponding
+;;;; Source for a non-source form of such a combination shall include the source code for the
+;;;; parts of clojure, clojure.contrib used as well as that of the covered work.
 ;;;; *********************************************************************************************
 (ns  ^{:author "Roger Grantham"}
-    org.magnopere.ars.grammatica.tagger
-    (:use [org.magnopere.ars.grammatica.token]
-          [org.magnopere.ars.grammatica.tokenizer]
-          [org.magnopere.ars.grammatica.analysis]
-          [org.magnopere.ars.grammatica.data.lexicon]))
+    ars.grammatica.tagger
+    (:use [ars.grammatica.parse.token]
+          [ars.grammatica.parse.tokenizer]
+          [ars.grammatica.morphology.analysis]
+          [ars.grammatica.lexicon.latin_lexicon]))
 
 
 (defn tag-tokens [token-seq]
