@@ -20,108 +20,14 @@
 ;;;; 
 ;;;; If you modify ArsGrammatica, or any covered work, by linking or combining it with
 ;;;; clojure or clojure.contrib (or a modified version of that library),
-;;;; containing parts covered by the terms of Eclipse Public License 1.1, the licensors of ArsGrammatica grant
+;;;; containing parts covered by the terms of Eclipse Public License, the licensors of ArsGrammatica grant
 ;;;; you additional permission to convey the resulting work. Corresponding Source for a non-source form 
 ;;;; of such a combination shall include the source code for the parts of clojure, clojure.contrib used as
 ;;;; well as that of the covered work.
 ;;;; *********************************************************************************************
 (ns  ^{:author "Roger Grantham"}
-  ars.grammatica.data.latin-lexicon-generator)
-
-;;
-;; Current schema:
-;;    ARS.lexicon (
-;;                 lemma varchar(100),
-;;                 language_id int,
-;;                 definition varchar(255));
-
-(def num-to-declension {:indeclinable "indeclinable"
-                        :greek "greek"
-                        1 "1st"
-                        2 "2nd"
-                        3 "3rd"
-                        4 "4th"
-                        5 "5th"})
-
-(defn- declension-from-number [declension]
-  (get num-to-declension declension))
-
-(def num-to-conjugation {:irregular "irregular"
-                         1 "1st"
-                         2 "2nd"
-                         3 "3rd"
-                         4 "4th"
-                         5 "5th"})
-
-(defn- conjugation-from-number [conjugation]
-  (get num-to-conjugation conjugation))
-
-;; (noun lemma [genitive|--] [:masculine|:feminine|:neuter] [1|2|3|4|5|:greek|:indeclinable] "definition" [:plural]?)
-;;   (noun "aciēs" "aciēī" :feminine 5 "edge; line of battle")
-;;   (noun "Etrūscī" "Etrūscōrum" :masculine :plural 2 "the Etruscans, the people of Etruria.")
-(defrecord noun-rec [lemma genitive gender declension definition number])
-
-(defn noun [lemma genitive gender declension definition & number]
-    (noun-rec.
-      lemma
-      genitive
-      gender
-      (declension-from-number declension)
-      definition
-      number))
-
-
-;; (adjective m f n gen [2|3|:indefinite] "definition")
-;;   (adjective "albus" "alba" "album" "albī" 2 "white")
-;;   (adjective "aliqui" "aliqua" "aliquod" "alicūius" :indefinite "some, any")
-(defrecord adjective-rec [m f n gen declension definition])
-
-(defn adjective [m f n gen declension definition]
-    (adjective-rec.
-      m
-      f
-      n
-      gen
-      (declension-from-number declension)
-      definition))
-
-;; (verb first-singular [infinitive|--] [first-perfect|--] [perfect participle|--] [1|2|3|4|5|:irregular] definition [:semideponent|:deponent]?)
-(defrecord verb-rec [first-present inf first-perfect participle conjugation deponent-type definition])
-
-(defn verb [first-present inf first-perfect participle conjugation definition & deponent-type]
-  (verb-rec.
-    first-present
-    inf
-    first-perfect
-    participle
-    (conjugation-from-number conjugation)
-    deponent-type
-    definition))
-
-;; TODO entries must have comparative and superlative degrees
-;; (adverb lemma def)
-(defrecord adverb-rec [lemma def])
-
-(defn adverb [lemma def]
-  (adverb-rec. lemma def))
-
-;; (conjunction lemma def)
-(defrecord conjunction-rec [lemma def])
-
-(defn conjunction [lemma definition]
-  (conjunction-rec.
-    lemma
-    definition))
-
-;; (preposition lemma [:ablative|:accusative] def)
-(defrecord preposition-rec [lemma governing-case definition])
-
-(defn preposition [lemma governing-case definition]
-  (preposition-rec.
-    lemma
-    governing-case
-    definition))
-
+  ars.grammatica.lexicon.latin-lexicon-generator
+  (:use [ars.grammatica.lexicon.entry]))
 
 (adjective "ācer" "ācris" "ācre" "ācris" 3 "sharp; figuratively, keen, active, eager ")
 (adjective "acerbus" "acerba" "acerbum" "acerbī" 2 "bitter, sour")
@@ -151,7 +57,6 @@
 (adjective "aurātus" "aurāta" "aurātum" "aurātī" 2 "adorned with gold")
 (adjective "aureus" "aurea" "aureum" "aureī" 2 "golden")
 (adjective "benignus" "benigna" "benignum" "benignī" 2 "good-natured, kind, often used with dat.")
-(adjective "bīna" "distributiue" "numeral" "distributiue" 2 "two each, two at a time")
 (adjective "bonus" "bona" "bonum" "bonī" 2 "good, kind")
 (adjective "breuis" "breuis" "breue" "breuis" 3 "short")
 (adjective "Campānus" "Campāna" "Campānum" "Campānī" 2 "of Campania")
@@ -363,39 +268,39 @@
 (adjective "ūndecima" "ūndecimum" "numeral" "ūndecimum" 2 "eleventh")
 (adjective "ūtilis" "ūtilis" "ūtile" "ūtilis" 3 "useful")
 
-(adverb "ācriter" "compared ācrius, ācerrimē, sharply, fiercely")
+(adverb "ācriter" "ācrius" "ācerrimē" "sharply, fiercely")
 (adverb "adhūc" "hitherto, as yet, thus far")
 (adverb "alacriter" "comp alacrius, alacerrimē, actively, eagerly")
 (adverb "amīcē" "superl. amīcissimē, in a friendly manner")
 (adverb "anteā" "before, formerly")
-(adverb "audācter" "compared audācius, audācissimē, boldly")
-(adverb "bene" "well")
-(adverb "benignē" "compared benignius, benignissimē, kindly")
+(adverb "audācter" "audācius" "audācissimē" "boldly")
+(adverb "bene" "melius" "optimē" "bene: well; melius: better; optimē: very well, best of all")
+(adverb "benignē" "benignius" "benignissimē" "kindly")
 (adverb "bis" "twice")
-(adverb "celeriter" "compared celerius, celerrimē, swiftly")
-(adverb "certē" "compared certius, certissimē, surely, certainly")
+(adverb "celeriter" "celerius" "celerrimē" "swiftly")
+(adverb "certē" "certius" "certissimē" "surely, certainly")
 (adverb "circiter" "about")
 (adverb "comminus" "hand to hand")
-(adverb "commodē" "compared commodius, commodissimē, conveniently, fitly")
+(adverb "commodē" "commodius" "commodissimē" "conveniently, fitly")
 (adverb "cōnfestim" "immediately")
 (adverb "cotīdiē" "daily")
-(adverb "cupidē" "compared cupidius, cupidissimē, eagerly")
+(adverb "cupidē" "cupidius" "cupidissimē" "eagerly")
 (adverb "cūr" "why, wherefore")
 (adverb "deinde" "(from thence), then, in the next place")
 (adverb "dēmum" "at last, not till then; tum dēmum, then at last")
 (adverb "dēnique" "at last, finally. Cf. postrēmō")
-(adverb "dīligenter" "compared dīligentius, dīligentissimē, industriously, diligently")
-(adverb "diū" "compared diūtius, diūtissimē, for a long time, long ")
+(adverb "dīligenter" "dīligentius" "dīligentissimē" "industriously, diligently")
+(adverb "diū" "diūtius" "diūtissimē" "for a long time, long ")
 (adverb "ecce" "see! behold! there! here!")
 (adverb "eō" "to that place, thither")
 (adverb "etiam" "yet, still; also, besides. Cf. quoque; nōn sōlum ... sed etiam, not only ... but also")
-(adverb "facile" "compared facilius, facillimē, easily")
+(adverb "facile" "facilius" "facillimē" "easily")
 (adverb "ferē" "about, nearly, almost")
 (adverb "forte" "by chance")
-(adverb "fortiter" "compared fortius, fortissimē, strongly; bravely")
+(adverb "fortiter" "fortius" "fortissimē" "strongly; bravely")
 (adverb "frūstrā" "in vain, vainly")
 (adverb "Graecē" "in Greek")
-(adverb "grauiter" "compared gravius, gravissimē, heavily; greatly, seriously; graviter ferre, bear ill, take to heart")
+(adverb "grauiter" "gravius" "gravissimē" "heavily; greatly, seriously; graviter ferre, bear ill, take to heart")
 (adverb "hāctenus" "thus far")
 (adverb "hīc" "here")
 (adverb "hīnc" "from here, hence")
@@ -408,20 +313,15 @@
 (adverb "intrā" "with acc. within, in")
 (adverb "ita" "so, thus. Cf. sīc and tam")
 (adverb "item" "also")
-(adverb "laetē" "compared laetius, laetissimē, gladly")
-(adverb "lātē" "compared lātius, lātissimē, widely")
+(adverb "laetē" "laetius" "laetissimē" "gladly")
+(adverb "lātē" "lātius" "lātissimē" "widely")
 (adverb "Latinē" "in Latin; Latīnē loquī, to speak Latin")
-(adverb "lēniter" "compared lēnius, lēnissimē, gently")
-(adverb "libenter" "compared libentius, libentissimē, willingly, gladly")
-(adverb "longē" "comp. longius, longissimē, a long way off; by far")
-(adverb "magis" "in comp. degree [magnus, great], more, in a higher degree")
-(adverb "magnopere" "compared magis, maximē, greatly, exceedingly ")
-(adverb "maximē" "in superl. degree [maximus, greatest], compared magnopere, magis, maximē, especially, very much")
-(adverb "melius" "(in comp. degree, compared bene, melius, optimē) better")
-(adverb "minimē" "(in superl. degree, compared parum, minus, minimē) least, very little; by no means ")
-(adverb "minus" "(in comp. degree, compared parum, minus, minimē) less")
+(adverb "lēniter" "lēnius" "lēnissimē" "gently")
+(adverb "libenter" "libentius" "libentissimē" "willingly, gladly")
+(adverb "longē" "longius" "longissimē" "a long way off; by far")
+(adverb "magis" "magnopere" "maximē" "magis: more, in a higher degree; magnopere: greatly, exceedingly; maximē, especially, very much")
 (adverb "modo" "only, merely, just now; modo ... modo, now ... now, sometimes ... sometimes")
-(adverb "molestē" "compared molestius, molestissimē, annoyingly; molestē ferre, to be annoyed")
+(adverb "molestē" "molestius" "molestissimē" "annoyingly; molestē ferre, to be annoyed")
 (adverb "mox" "soon, presently")
 (adverb "multō" "much")
 (adverb "multum" "much")
@@ -435,9 +335,8 @@
 (adverb "nūper" "recently, lately, just now")
 (adverb "ōlim" "formerly, once upon a time")
 (adverb "omnīnō" "altogether, wholly, entirely")
-(adverb "optimē" "in superl. degree, compared bene, melius, optimē, very well, best of all")
 (adverb "paene" "nearly, almost")
-(adverb "parum" "too little, not enough ")
+(adverb "parum" "minus" "minimē" "parum: too little, not enough; minus: less; minimē: least, very little; by no means")
 (adverb "paulisper" "for a little while")
 (adverb "paulō" "by a little, little")
 (adverb "paulum" "a little, somewhat")
@@ -453,7 +352,7 @@
 (adverb "prope" "nearly")
 (adverb "propius" "nearer")
 (adverb "proximē" "nearest, next; last, most recently")
-(adverb "pūrē" "comp. pūrius, purely")
+(adverb "pūrē" "pūrius" "pūrissimē" "purely")
 (adverb "quam" "how; after a comparative, than ; with a superlative, translated as ... as possible, quam prīmum, as soon as possible")
 (adverb "quidem" "to be sure, certainly, indeed, nē ... quidem, not even")
 (adverb "quotannīs" "every year, yearly")
@@ -461,14 +360,14 @@
 (adverb "quō" "whither, where")
 (adverb "rārō" "rarely")
 (adverb "rūrsus" "again, in turn")
-(adverb "saepe" "compared saepius, saepissimē, often, frequently")
+(adverb "saepe" "saepius" "saepissimē" "often, frequently")
 (adverb "satis" "enough, sufficient, sufficiently")
 (adverb "semper" "always, forever")
 (adverb "sīc" "thus, in this way. Cf. ita, tam")
 (adverb "sīcut" "just as, as if")
 (adverb "simul" "at the same time; simul ac or simul atque: as soon as")
 (adverb "sōlum" "alone, only; nōn sōlum ... sed etiam, not only ... but also;")
-(adverb "splendidē" "compared splendidius, splendidissimē, splendidly, handsomely")
+(adverb "splendidē" "splendidius" "splendidissimē" "splendidly, handsomely")
 (adverb "statim" "on the spot, at once, instantly")
 (adverb "subitō" "suddenly")
 (adverb "tamen" "yet, however, nevertheless")
@@ -479,9 +378,9 @@
 (adverb "totiēns" "so often, so many times")
 (adverb "tum" "then, at that time")
 (adverb "ubi" "where, when")
-(adverb "uehementer" "compared vehementius, vehementissimē, eagerly, vehemently")
+(adverb "uehementer" "vehementius" "vehementissimē" "eagerly, vehemently")
 (adverb "uērō" "in truth, surely; conj. but, however; tum vērō, then you may be sure, introducing the climax of a story")
-(adverb "uiolenter" "compared violentius, violentissimē, violently, furiously")
+(adverb "uiolenter" "violentius" "violentissimē" "violently, furiously")
 (adverb "uix" "scarcely, hardly")
 (adverb "umquam" "ever, at any time")
 (adverb "ūnā" "in the same place, at the same time")
