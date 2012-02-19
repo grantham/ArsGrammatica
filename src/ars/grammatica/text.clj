@@ -20,38 +20,33 @@
 ;;;; 
 ;;;; If you modify ArsGrammatica, or any covered work, by linking or combining it with
 ;;;; clojure or clojure.contrib (or a modified version of that library),
-;;;; containing parts covered by the terms of Eclipse Public License, the licensors of
-;;;; ArsGrammatica grant you additional permission to convey the resulting work. Corresponding
-;;;; Source for a non-source form of such a combination shall include the source code for the
+;;;; containing parts covered by the terms of Eclipse Public License, the licensors of 
+;;;; ArsGrammatica grant you additional permission to convey the resulting work. Corresponding 
+;;;; Source for a non-source form of such a combination shall include the source code for the 
 ;;;; parts of clojure, clojure.contrib used as well as that of the covered work.
 ;;;; *********************************************************************************************
+
 (ns  ^{:author "Roger Grantham"}
-    ars.grammatica.parse.tagger
-    (:use [ars.grammatica.parse.token]
-          [ars.grammatica.parse.tokenizer]
-          [ars.grammatica.morphology.analysis]
-          [ars.grammatica.lexicon.latin_lexicon]))
+    ars.grammatica.text
+  (:require [clojure.string :as s]))
 
+(def vowels {"ā" "a" "ē" "e" "ī" "i" "ō" "o" "ū" "u" "Ā" "A" "Ē" "E" "Ī" "I" "Ō" "O" "Ū" "U"})
+(def consonants {"j" "i" "v" "u" "J" "I" "U" "V"})
 
-(defn tag-tokens [token-seq]
-  (if (empty? token-seq)
-    nil
-    (lazy-seq
-      (cons
-        (add-analyses (first token-seq) (fetch-analyses (:form (first token-seq))))
-        (tag-tokens (rest token-seq))))))
+(defn slurp-resource [path]
+  "Given a FULL classpath resource, returns a string of that resource. Do not start the path with a '/'"
+  (with-open [cp-resource (.getResourceAsStream (clojure.lang.RT/baseLoader) path)]
+    (slurp  cp-resource)))
 
+(defn- reduce-replace [s m]
+  (reduce #(s/replace %1 (first %2) (first (rest %2))) s m))
 
-(defn tag [input-type char-sequence]
-    "Accepts an input-type designator (one of :latin, :greek, :greek-betacode) and a sequence of character data and
-returns a lazy sequence of tokens, each of which is tagged with zero or more analyses."
-    (if (empty? char-sequence)
-      nil
-      (let [token-seq (tokenize input-type char-sequence)]
-        (lazy-seq
-          (cons
-            (add-analyses (first token-seq) (fetch-analyses (:form (first token-seq))))
-            (tag-tokens (rest token-seq)))))))
+(defn remove-macrons [s]
+  "Replaces any vowel letter with a macron with the corresponding letter without a macron"
+  (reduce-replace s vowels))
 
-
+;; see http://docs.oracle.com/javase/6/docs/api/java/text/Normalizer.html
+(defn normalize-latin [word]
+  "Normalizes Latin orthography to simplest sensible system."
+  (reduce-replace word consonants ))
 

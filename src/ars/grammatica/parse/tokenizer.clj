@@ -28,17 +28,12 @@
 (ns ^{:author "Roger Grantham"}
   ars.grammatica.parse.tokenizer
   (:use [clojure.core]
+        [ars.grammatica.text]
         [ars.grammatica.parse.token])
   (:require [clojure.string :as s]))
 
 (declare normalize-latin)
 
-;; see http://docs.oracle.com/javase/6/docs/api/java/text/Normalizer.html
-(defn normalize-latin [word]
-  "Normalizes Latin orthography to simplest sensible system."
-  (if (empty? word)
-    nil
-    (s/replace (s/replace (s/replace word \j \i ) \v \u) \J \I)))
 
 
 (def normalizer {:latin normalize-latin

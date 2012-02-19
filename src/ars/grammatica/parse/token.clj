@@ -33,7 +33,7 @@
 ;; Represents a tokenized word form with a slot for analyses
 (defrecord Token [form analyses])
 
-(defmethod print-method org.magnopere.ars.grammatica.token.Token [token writer]
+(defmethod print-method ars.grammatica.parse.token.Token [token writer]
   (.write writer (apply str "Token#<" (:form token)))
   (doseq [analysis (:analyses token)]
     (.write writer (format "%n\t"))

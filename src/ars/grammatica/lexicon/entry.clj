@@ -42,10 +42,10 @@
 (defrecord verb-entry [first-present inf first-perfect participle conjugation deponent-type definition])
 
 ;; (adverb lemma def)
-(defrecord adverb-entry [lemma comparative superlative def])
+(defrecord adverb-entry [lemma comparative superlative definition])
 
 ;; (conjunction lemma def)
-(defrecord conjunction-entry [lemma def])
+(defrecord conjunction-entry [lemma definition])
 
 ;; (preposition lemma [:ablative|:accusative] def)
 (defrecord preposition-entry [lemma governing-case definition])
@@ -54,7 +54,7 @@
 (defrecord exclam-entry [lemma definition])
 
 ;; pronoun type is relative|interrogative
-(defrecord pronoun-entry [m f n pronoun-type defition])
+(defrecord pronoun-entry [m f n pronoun-type definition])
 
 
 (def num-to-declension {:indeclinable "indeclinable"
@@ -86,7 +86,7 @@
     gender
     (declension-from-number declension)
     definition
-    number))
+    (first number)))
 
 ;; TODO: irregular comparatives
 (defn adjective [m f n gen declension definition]
@@ -105,7 +105,7 @@
     first-perfect
     participle
     (conjugation-from-number conjugation)
-    deponent-type
+    (first deponent-type)
     definition))
 
 ;; (adverb lemma def)

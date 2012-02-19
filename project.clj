@@ -35,6 +35,7 @@
                  [jline/jline "1.0"]
                  [org.apache.derby/derby "10.8.2.2"]
                  [org.clojure/tools.cli "0.2.1"]]
+  :aot [ars.grammatica.core]
   :main org.magnopere.ars.grammatica.core)
 
 ;; TODO: add a build set to create the database if it doesn't exist:
