@@ -37,6 +37,30 @@
 
 (def create-table-path "sql/create_lat_lex_table.sql")
 
+
+
+(def declensions {:indeclinable "indeclinable"
+                        :greek "greek"
+                        :declension-1 "1st"
+                        :declension-2 "2nd"
+                        :declension-3 "3rd"
+                        :declension-4 "4th"
+                        :declension-5 "5th"})
+
+(defn- declension-to-string [declension]
+  (get declensions declension))
+
+(def conjugations {:irregular "irregular"
+                         :conjugation-1 "1st"
+                         :conjugation-2 "2nd"
+                         :conjugation-3 "3rd"
+                         :conjugation-4 "4th"
+                         :conjugation-5 "5th"})
+
+(defn- conjugation-to-string [conjugation]
+  (get conjugations conjugation))
+
+
 (defn create-latin-lexicon-sql [^String path]
   "Writes the sql require to create the latin lexicon database table to a file described by path."
   (let [out-file (File. path)]
@@ -83,7 +107,7 @@
 (defn write-adjective [bw adj]
   (.write
       bw
-      (str "(" (q :m adj) ", 'adj', "  (q (remove-macrons (:m adj))) ", " (q :gen adj) ", " (q :declension adj)
+      (str "(" (q :m adj) ", 'adj', "  (q (remove-macrons (:m adj))) ", " (q :gen adj) ", " (q (declension-to-string (:declension adj)))
         ", " (q :m adj) ", " (q :f adj) ", " (q :n adj) ", " (q :definition adj) ")" )))
 
 (defn write-adjectives [bw]
@@ -120,7 +144,7 @@
 
 (defn write-noun [bw noun]
   (.write bw (str "(" (q :lemma noun) ", 'noun', "  (q (remove-macrons (:lemma noun))) ", " (q :gen noun) ", "
-               (q :declension noun) ", " (quote-keyword (:number noun)) ", " (q :definition noun) ")")))
+               (q (declension-to-string (:declension noun))) ", " (quote-keyword (:number noun)) ", " (q :definition noun) ")")))
 
 ;; noun [lemma genitive gender declension definition & number]
 (defn write-nouns [bw]
@@ -146,7 +170,7 @@
   (.write bw
     (str "(" (q :first-present verb) ", 'verb', " (q (remove-macrons (:first-present verb))) ", "
       (q :first-present verb) ", " (q :inf verb) ", " (q :first-perfect verb) ", " (q :participle verb) ", "
-      (q :conjugation verb) ", "
+      (q (conjugation-to-string (:conjugation verb))) ", "
       (quote-keyword (:deponent-type verb))
       ", " (q :definition verb) ")")))
 

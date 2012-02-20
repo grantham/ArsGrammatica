@@ -1,5 +1,5 @@
 ;;;; *********************************************************************************************
-;;;; Copyright (C) 2012 Roger Grantham
+;;;; Copyright (C) ${today.year} Roger Grantham
 ;;;; 
 ;;;; All rights reserved.
 ;;;; 
@@ -27,27 +27,8 @@
 ;;;; *********************************************************************************************
 
 (ns  ^{:author "Roger Grantham"}
-    ars.grammatica.text
-  (:require [clojure.string :as s]))
+    ars.grammatica.morphology.latin.generate-verbs-test
+  (:use [ars.grammatica.morphology.latin.generate-verbs]
+        [clojure.test]))
 
-(def vowels {"ā" "a" "ē" "e" "ī" "i" "ō" "o" "ū" "u" "Ā" "A" "Ē" "E" "Ī" "I" "Ō" "O" "Ū" "U"})
-(def consonants {"j" "i" "v" "u" "J" "I" "U" "V"})
-
-(defn slurp-resource [path]
-  "Given a FULL classpath resource, returns a string of that resource. Do not start the path with a '/'"
-  (with-open [cp-resource (.getResourceAsStream (clojure.lang.RT/baseLoader) path)]
-    (slurp  cp-resource)))
-
-(defn- reduce-replace [s m]
-  "Replaces all occurrences of m key in s with m value."
-  (reduce #(s/replace %1 (first %2) (first (rest %2))) s m))
-
-(defn remove-macrons [s]
-  "Replaces any vowel letter with a macron with the corresponding letter without a macron"
-  (reduce-replace s vowels))
-
-;; see http://docs.oracle.com/javase/6/docs/api/java/text/Normalizer.html
-(defn normalize-latin [word]
-  "Normalizes Latin orthography to simplest sensible system."
-  (reduce-replace word consonants ))
 

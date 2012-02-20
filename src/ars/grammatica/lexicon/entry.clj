@@ -28,9 +28,7 @@
 (ns  ^{:author "Roger Grantham"}
   ars.grammatica.lexicon.entry)
 
-;; (noun lemma [genitive|--] [:masculine|:feminine|:neuter] [1|2|3|4|5|:greek|:indeclinable] "definition" [:plural]?)
-;;   (noun "aciēs" "aciēī" :feminine 5 "edge; line of battle")
-;;   (noun "Etrūscī" "Etrūscōrum" :masculine :plural 2 "the Etruscans, the people of Etruria.")
+;; (noun lemma [genitive|--] [:masculine|:feminine|:neuter] [:declension-1 ... :declension-5|:greek|:indeclinable] "definition" [:plural]?)
 (defrecord noun-entry [lemma genitive gender declension definition number])
 
 ;; (adjective m f n gen [2|3|:indefinite] "definition")
@@ -56,55 +54,37 @@
 ;; pronoun type is relative|interrogative
 (defrecord pronoun-entry [m f n pronoun-type definition])
 
-
-(def num-to-declension {:indeclinable "indeclinable"
-                        :greek "greek"
-                        1 "1st"
-                        2 "2nd"
-                        3 "3rd"
-                        4 "4th"
-                        5 "5th"})
-
-(defn- declension-from-number [declension]
-  (get num-to-declension declension))
-
-(def num-to-conjugation {:irregular "irregular"
-                         1 "1st"
-                         2 "2nd"
-                         3 "3rd"
-                         4 "4th"
-                         5 "5th"})
-
-(defn- conjugation-from-number [conjugation]
-  (get num-to-conjugation conjugation))
-
-
+;; gender - :masculine :feminine :neuter
+;; declension - :declension-1 .. :declension-5, :indeclinable, :greek
 (defn noun [lemma genitive gender declension definition & number]
   (noun-entry.
     lemma
     genitive
     gender
-    (declension-from-number declension)
+    declension
     definition
     (first number)))
 
 ;; TODO: irregular comparatives
+;; declension - :declension-1 .. :declension-5
 (defn adjective [m f n gen declension definition]
   (adjective-entry.
     m
     f
     n
     gen
-    (declension-from-number declension)
+    declension
     definition))
 
+;; conjugation - :conjugation-1 .. :conjugation-5, :irregular
+;; deponent-type - nil, :deponent, :semi-deponent
 (defn verb [first-present inf first-perfect participle conjugation definition & deponent-type]
   (verb-entry.
     first-present
     inf
     first-perfect
     participle
-    (conjugation-from-number conjugation)
+    conjugation
     (first deponent-type)
     definition))
 
@@ -120,6 +100,7 @@
     lemma
     definition))
 
+;; governing-case - :ablative, :accusative
 (defn preposition [lemma governing-case definition]
   (preposition-entry.
     lemma

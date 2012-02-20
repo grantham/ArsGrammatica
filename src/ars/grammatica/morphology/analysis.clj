@@ -32,7 +32,19 @@
 ;; Represents a morphological analysis of a word form
 ;;
 
-(defrecord Analysis [form lemma pos person number tense mood voice gender gcase degree definition])
+;; form - string
+;; plain-form  - string
+;; lemma - string
+;; pos - ('noun', 'verb', 'adj', 'adv', 'prep', 'conj', 'exclam', 'pron')
+;; person -  ('1st', '2nd', '3rd', '4th', '5th', 'irregular', '')
+;; number -  ('sg', 'pl', '')
+;; tense -  ('' 'imperf' 'perf' 'futperf' 'pres' 'plup' 'fut')
+;; mood -  ('' 'ind' 'gerundive' 'inf' 'supine' 'imperat' 'subj')
+;; voice -  ('' 'act' 'pass')
+;; gender -  ('' 'masc' 'neut' 'fem')
+;; gcase  - ('' 'dat' 'gen' 'voc' 'abl' 'nom' 'acc')
+;; degree -  ('' 'comp' 'superl')
+(defrecord Analysis [form plain-form lemma pos person number tense mood voice gender gcase degree])
 
 (defmethod print-method ars.grammatica.morphology.analysis.Analysis [analysis writer]
   (.write writer (str "Analysis#<"
