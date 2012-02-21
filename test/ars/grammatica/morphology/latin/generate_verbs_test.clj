@@ -31,4 +31,10 @@
   (:use [ars.grammatica.morphology.latin.generate-verbs]
         [clojure.test]))
 
-
+(deftest find-endings-test
+  (is (not (nil? (find-endings :conjugation-1 :pres :ind :act))))
+  (is (not (nil? (find-endings :conjugation-2 :pres :ind :act))))
+  (is (not (nil? (find-endings :conjugation-3 :pres :ind :act))))
+  (is (not (nil? (find-endings :conjugation-4 :pres :ind :act))))
+  (is (not (nil? (find-endings :conjugation-5 :pres :ind :act))))
+  )
