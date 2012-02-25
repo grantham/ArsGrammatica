@@ -32,13 +32,19 @@
         [ars.grammatica.lexicon.entry]
         [clojure.test]))
 
+(def amo (verb "amō" "amāre" "amāuī" "amātus" :conjugation-3 "love, like, be fond of"))
+(def deleo (verb "dēleō" "dēlēre" "dēlēuī" "dēlētus" :conjugation-2 "blot out, destroy"))
+(def duco (verb "dūcō" "dūcere" "dūxī" "ductus" :conjugation-3 "(imperative dūc), lead, conduct"))
+(def audio (verb "audiō" "audīre" "audīuī" "audītus" :conjugation-4 "hear, listen to"))
+(def capio (verb "capiō" "capere" "cēpī" "captus" :conjugation-5 "take, seize, capture"))
+(def sequor (verb "sequor" "sequī" "secūtus sum" "" :conjugation-3 "follow" :deponent))
+
 (deftest find-endings-test
   (is (not (nil? (find-endings :conjugation-1 :pres :ind :act))))
   (is (not (nil? (find-endings :conjugation-2 :pres :ind :act))))
   (is (not (nil? (find-endings :conjugation-3 :pres :ind :act))))
   (is (not (nil? (find-endings :conjugation-4 :pres :ind :act))))
-  (is (not (nil? (find-endings :conjugation-5 :pres :ind :act))))
-  )
+  (is (not (nil? (find-endings :conjugation-5 :pres :ind :act)))))
 
 (deftest stem-test
   (is (= "am" (stem "amō" "ō"))))
@@ -47,8 +53,23 @@
   (is (= "am" (get-present-stem (verb "amō" "amāre" "amāuī" "amātus" :conjugation-3 "love, like, be fond of"))))
   (is (= "sequ" (get-present-stem (verb "sequor" "sequī" "secūtus sum" "" :conjugation-3 "follow" :deponent)))))
 
+(defn assert-form [expected-form analysis]
+  (is (= expected-form (:form analysis))))
 
-(deftest generate-first-conj-verb-test
-  (let [verb (verb "amō" "amāre" "amāuī" "amātus" :conjugation-3 "love, like, be fond of")]
+(defn assert-forms [expected-forms entry conj tense mood voice]
+  (doall
+    (map
+      assert-form
+      expected-forms
+      (analyses-from-endings entry (find-endings conj tense mood voice)))))
 
-    ))
+(deftest analyses-from-endings-test
+  ;; present indicative active
+  (assert-forms ["amō" "amās" "amat" "amāmus" "amātis" "amant"] amo :conjugation-1 :pres :ind :act)
+  (assert-forms ["dēleō" "dēlēs" "dēlet" "dēlēmus" "dēlētis" "dēlent"] deleo :conjugation-2 :pres :ind :act)
+  (assert-forms ["dūcō" "dūcis" "dūcit" "dūcimus" "dūcitis" "dūcunt"] duco :conjugation-3 :pres :ind :act)
+  (assert-forms ["audiō" "audīs" "audit" "audīmus" "audītis" "audiunt"] audio :conjugation-4 :pres :ind :act)
+  (assert-forms ["capiō" "capis" "capit" "capimus" "capitis" "capiunt"] capio :conjugation-5 :pres :ind :act)
+  ;; present indicative passive
+  )
+

@@ -28,7 +28,8 @@
 
 (ns  ^{:author "Roger Grantham"}
     ars.grammatica.morphology.latin.generate-verbs
-  (:use [ars.grammatica.lexicon.latin-lexicon-generator]
+  (:use [ars.grammatica.text]
+        [ars.grammatica.lexicon.latin-lexicon-generator]
         [ars.grammatica.lexicon.entry]
         [ars.grammatica.morphology.analysis])
   (:require [clojure.string :as s]))
@@ -141,9 +142,12 @@
   (s/replace form (re-pattern (str ending "$")) ""))
 
 (defn get-present-stem [verb-entry]
-  (if (or (= :conjugation-4 (:conjugation verb-entry))(= :conjugation-5 (:conjugation verb-entry)))
-    (stem (:first-present verb-entry) "i(ō|or)")
-    (stem (:first-present verb-entry) "ō|(or)")))
+  (cond
+    (or (= :conjugation-4 (:conjugation verb-entry))(= :conjugation-5 (:conjugation verb-entry)))
+      (stem (:first-present verb-entry) "i(ō|or)")
+    (= :conjugation-2 (:conjugation verb-entry))
+      (stem (:first-present verb-entry) "e(ō|or)")
+    :else (stem (:first-present verb-entry) "ō|(or)")))
 
 (defn get-perfect-stem [verb-entry]
   (stem (:first-perfect verb-entry) "ī"))
@@ -170,7 +174,7 @@
     nil
     (make-analysis {
       :form (str (stem-for-endings verb-entry verb-endings) (form verb-endings))
-      :plain-form (str (stem-for-endings verb-entry verb-endings) (form verb-endings))
+      :plain-form (remove-macrons (str (stem-for-endings verb-entry verb-endings) (form verb-endings)))
       :lemma (:lemma verb-entry)
       :pos "verb"
       :person (name (form personal-endings))
@@ -197,13 +201,19 @@
       #(analyses-from-endings verb-entry %)
       (filter #(= (:conjugation verb-entry) (:conjugation %)) regular-endings))))
 
-(defn generate-verb-analyses [verb-entry]
-  (cond
-    (= :irregular (:conjugation verb-entry))
-      nil
-    (= :deponent (:deponent-type verb-entry))
-      nil
-    (= :semi-deponent (:deponent-type verb-entry))
-      nil
-    :else (generate-regular-analyses verb-entry)))
+(defn generate-verb-analyses []
+  "Uses the core latin lexicon verb entries: for each verb entry, and analysis is created for each possible
+  form of that verb."
+  (map
+    #(cond
+        (= :irregular (:conjugation %))
+        nil
+        (= :deponent (:deponent-type %))
+        nil
+        (= :semi-deponent (:deponent-type %))
+        nil
+        :else (generate-regular-analyses %))
+    (make-verbs)))
+
+
 
