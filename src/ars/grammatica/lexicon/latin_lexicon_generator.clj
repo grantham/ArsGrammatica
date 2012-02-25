@@ -1042,7 +1042,7 @@
 (verb "agō" "agere" "ēgī" "āctus" :conjugation-3 "drive, lead; do, perform; vītam agere, pass life")
 (verb "amiciō" "amicīre" "" "amictus" :conjugation-4 "throw around, wrap about, clothe")
 (verb "āmittō" "āmittere" "amīsī" "amissus" :conjugation-3 "send away; lose")
-(verb "amō" "amāre" "amāuī" "amātus" :conjugation-3 "love, like, be fond of")
+(verb "amō" "amāre" "amāuī" "amātus" :conjugation-1 "love, like, be fond of")
 (verb "animaduertō" "animaduertere" "animaduertī" "animaduersus" :conjugation-3 "turn the mind to, notice")
 (verb "appāreō" "appārēre" "appāruī" "" :conjugation-2 "appear")
 (verb "appellō" "appellāre" "appellāuī" "appellātus" :conjugation-1 "call by name, name. Cf. nōminō, vocō")

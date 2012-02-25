@@ -29,6 +29,7 @@
 (ns  ^{:author "Roger Grantham"}
     ars.grammatica.morphology.latin.generate-verbs-test
   (:use [ars.grammatica.morphology.latin.generate-verbs]
+        [ars.grammatica.lexicon.entry]
         [clojure.test]))
 
 (deftest find-endings-test
@@ -38,3 +39,16 @@
   (is (not (nil? (find-endings :conjugation-4 :pres :ind :act))))
   (is (not (nil? (find-endings :conjugation-5 :pres :ind :act))))
   )
+
+(deftest stem-test
+  (is (= "am" (stem "amō" "ō"))))
+
+(deftest get-present-stem-test
+  (is (= "am" (get-present-stem (verb "amō" "amāre" "amāuī" "amātus" :conjugation-3 "love, like, be fond of"))))
+  (is (= "sequ" (get-present-stem (verb "sequor" "sequī" "secūtus sum" "" :conjugation-3 "follow" :deponent)))))
+
+
+(deftest generate-first-conj-verb-test
+  (let [verb (verb "amō" "amāre" "amāuī" "amātus" :conjugation-3 "love, like, be fond of")]
+
+    ))

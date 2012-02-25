@@ -36,7 +36,7 @@
 ;; plain-form  - string
 ;; lemma - string
 ;; pos - ('noun', 'verb', 'adj', 'adv', 'prep', 'conj', 'exclam', 'pron')
-;; person -  ('1st', '2nd', '3rd', '4th', '5th', 'irregular', '')
+;; person -  ('1st', '2nd', '3rd', '')
 ;; number -  ('sg', 'pl', '')
 ;; tense -  ('' 'imperf' 'perf' 'futperf' 'pres' 'plup' 'fut')
 ;; mood -  ('' 'ind' 'gerundive' 'inf' 'supine' 'imperat' 'subj')
