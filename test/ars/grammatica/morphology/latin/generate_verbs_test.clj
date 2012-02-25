@@ -71,5 +71,11 @@
   (assert-forms ["audiō" "audīs" "audit" "audīmus" "audītis" "audiunt"] audio :conjugation-4 :pres :ind :act)
   (assert-forms ["capiō" "capis" "capit" "capimus" "capitis" "capiunt"] capio :conjugation-5 :pres :ind :act)
   ;; present indicative passive
+  ;; present subjunctive active
+  (assert-forms ["amem" "amēs" "amet" "amēmus" "ametis" "ament"] amo :conjugation-1 :pres :subj :act)
+  (assert-forms ["dēleam" "dēleās" "dēleat" "dēleāmus" "dēleātis" "dēleant"] deleo :conjugation-2 :pres :subj :act)
+  (assert-forms ["dūcam" "dūcās" "dūcat" "dūcāmus" "dūcātis" "dūcant"] duco :conjugation-3 :pres :subj :act)
+  (assert-forms ["audiam" "audiās" "audiat" "audiāmus" "audiātis" "audiant"] audio :conjugation-4 :pres :subj :act)
+  (assert-forms ["capiam" "capiās" "capiat" "capiāmus" "capiātis" "capiant"] capio :conjugation-5 :pres :subj :act)
   )
 
