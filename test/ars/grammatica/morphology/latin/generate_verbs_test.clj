@@ -189,5 +189,23 @@
   (assert-forms ["cēpissem" "cēpissēs" "cēpisset" "cēpissēmus" "cēpissētis" "cēpissent"] capio :conjugation-5 :plup :subj :act)
   (assert-forms ["captus eram" "captus erās" "captus erat" "captī erāmus" "captī erātis" "captī erant"] capio :conjugation-5 :plup :ind :pass)
   (assert-forms ["captus essem" "captus essēs" "captus esset" "captī essēmus" "captī essētis" "captī essent"] capio :conjugation-5 :plup :subj :pass)
+  ;;
+  ;; FUTURE PERFECT SYSTEM
+  ;;
+  (assert-forms ["amāuerō" "amāueris" "amāuerit" "amāuerimus"  "amāueritis" "amāuerint"] amo :conjugation-1 :futperf :ind :act)
+  (assert-forms ["amātus erō" "amātus eris" "amātus erit" "amātī erimus" "amātī eritis" "amātī erunt"] amo :conjugation-1 :futperf :ind :pass)
+
+  (assert-forms ["dēlēuerō" "dēlēueris" "dēlēuerit" "dēlēuerimus"  "dēlēueritis" "dēlēuerint"] deleo :conjugation-2 :futperf :ind :act )
+  (assert-forms ["dēlētus erō" "dēlētus eris" "dēlētus erit" "dēlētī erimus" "dēlētī eritis" "dēlētī erunt"] deleo :conjugation-2 :futperf :ind :pass)
+
+  (assert-forms ["dūxerō" "dūxeris" "dūxerit" "dūxerimus"  "dūxeritis" "dūxerint"] duco :conjugation-3 :futperf :ind :act)
+  (assert-forms ["ductus erō" "ductus eris" "ductus erit" "ductī erimus" "ductī eritis" "ductī erunt"] duco :conjugation-3 :futperf :ind :pass)
+
+  (assert-forms ["audīuerō" "audīueris" "audīuerit" "audīuerimus"  "audīueritis" "audīuerint"] audio :conjugation-4 :futperf :ind :act)
+  (assert-forms ["audītus erō" "audītus eris" "audītus erit" "audītī erimus" "audītī eritis" "audītī erunt"] audio :conjugation-4 :futperf :ind :pass)
+
+  (assert-forms ["cēperō" "cēperis" "cēperit" "cēperimus"  "cēperitis" "cēperint"] capio :conjugation-5 :futperf :ind :act)
+  (assert-forms ["captus erō" "captus eris" "captus erit" "captī erimus" "captī eritis" "captī erunt"] capio :conjugation-5 :futperf :ind :pass)
+
   )
 

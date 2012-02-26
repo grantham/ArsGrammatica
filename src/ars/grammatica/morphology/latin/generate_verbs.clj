@@ -74,7 +74,7 @@
                        (mk-endings :conjugation-1 :plup :ind :pass "us eram" "us erās" "us erat" "ī erāmus" "ī erātis" "ī erant")
                        (mk-endings :conjugation-1 :plup :subj :pass "us essem" "us essēs" "us esset" "ī essēmus" "ī essētis" "ī essent")
 
-                       (mk-endings :conjugation-1 :futperf :ind :act "erō" "erīs" "erit" "erīmus"  "eritis" "erint")
+                       (mk-endings :conjugation-1 :futperf :ind :act "erō" "eris" "erit" "erimus"  "eritis" "erint")
                        (mk-endings :conjugation-1 :futperf :ind :pass "us erō" "us eris" "us erit" "ī erimus" "ī eritis" "ī erunt")
 
                        (mk-endings :conjugation-1 :pres :imperat :act nil "ā" nil nil "āte" nil)
@@ -107,6 +107,9 @@
                        (mk-endings :conjugation-2 :plup :ind :pass "us eram" "us erās" "us erat" "ī erāmus" "ī erātis" "ī erant")
                        (mk-endings :conjugation-2 :plup :subj :pass "us essem" "us essēs" "us esset" "ī essēmus" "ī essētis" "ī essent")
 
+                       (mk-endings :conjugation-2 :futperf :ind :act  "erō" "eris" "erit" "erimus"  "eritis" "erint")
+                       (mk-endings :conjugation-2 :futperf :ind :pass "us erō" "us eris" "us erit" "ī erimus" "ī eritis" "ī erunt")
+
                        ;; 3
                        (mk-endings :conjugation-3 :pres :ind :act "ō" "is" "it" "imus" "itis" "unt")
                        (mk-endings :conjugation-3 :pres :subj :act "am" "ās" "at" "āmus" "ātis" "ant")
@@ -130,6 +133,9 @@
                        (mk-endings :conjugation-3 :plup :subj :act "issem" "issēs" "isset" "issēmus" "issētis" "issent")
                        (mk-endings :conjugation-3 :plup :ind :pass "us eram" "us erās" "us erat" "ī erāmus" "ī erātis" "ī erant")
                        (mk-endings :conjugation-3 :plup :subj :pass "us essem" "us essēs" "us esset" "ī essēmus" "ī essētis" "ī essent")
+
+                       (mk-endings :conjugation-3 :futperf :ind :act "erō" "eris" "erit" "erimus"  "eritis" "erint")
+                       (mk-endings :conjugation-3 :futperf :ind :pass "us erō" "us eris" "us erit" "ī erimus" "ī eritis" "ī erunt")
 
                        ;; 4
                        (mk-endings :conjugation-4 :pres :ind :act "iō" "īs" "it" "īmus" "ītis" "iunt")
@@ -155,6 +161,9 @@
                        (mk-endings :conjugation-4 :plup :ind :pass "us eram" "us erās" "us erat" "ī erāmus" "ī erātis" "ī erant")
                        (mk-endings :conjugation-4 :plup :subj :pass "us essem" "us essēs" "us esset" "ī essēmus" "ī essētis" "ī essent")
 
+                       (mk-endings :conjugation-4 :futperf :ind :act "erō" "eris" "erit" "erimus"  "eritis" "erint")
+                       (mk-endings :conjugation-4 :futperf :ind :pass "us erō" "us eris" "us erit" "ī erimus" "ī eritis" "ī erunt")
+
                        ;; 5
                        (mk-endings :conjugation-5 :pres :ind :act "iō" "is" "it" "imus" "itis" "iunt")
                        (mk-endings :conjugation-5 :pres :subj :act "iam" "iās" "iat" "iāmus" "iātis" "iant")
@@ -178,6 +187,10 @@
                        (mk-endings :conjugation-5 :plup :subj :act "issem" "issēs" "isset" "issēmus" "issētis" "issent")
                        (mk-endings :conjugation-5 :plup :ind :pass "us eram" "us erās" "us erat" "ī erāmus" "ī erātis" "ī erant")
                        (mk-endings :conjugation-5 :plup :subj :pass "us essem" "us essēs" "us esset" "ī essēmus" "ī essētis" "ī essent")
+
+                       (mk-endings :conjugation-5 :futperf :ind :act "erō" "eris" "erit" "erimus"  "eritis" "erint")
+                       (mk-endings :conjugation-5 :futperf :ind :pass "us erō" "us eris" "us erit" "ī erimus" "ī eritis" "ī erunt")
+
                        ])
 
 (defn find-endings [conjugation tense mood voice]
