@@ -121,16 +121,34 @@
                        (mk-endings :conjugation-3 :pres :subj :act "am" "ās" "at" "āmus" "ātis" "ant")
                        (mk-endings :conjugation-3 :pres :ind :pas "or" "eris" "itur" "imur" "iminī" "untur" "ere" nil)
                        (mk-endings :conjugation-3 :pres :subj :pas "ar" "āris" "ātur" "āmur" "āminī" "antur" "āre" nil)
+
+                       (mk-endings :conjugation-3 :imperf :ind :act "ēbam" "ēbās" "ābat" "ēbāmus" "ābātis" "ēbant")
+                       (mk-endings :conjugation-3 :imperf :subj :act "erem" "erēs" "eret" "erēmus" "erētis" "erent")
+                       (mk-endings :conjugation-3 :imperf :ind :pass "ēbar" "ēbāris" "ēbātur" "ēbāmur" "ēbāminī" "ēbantur" "ēbāre" nil)
+                       (mk-endings :conjugation-3 :imperf :subj :pass "erer" "erēris" "erētur" "erēmur" "erēminī" "erentur" "erēre" nil)
+
+
                        ;; 4
                        (mk-endings :conjugation-4 :pres :ind :act "iō" "īs" "it" "īmus" "ītis" "iunt")
                        (mk-endings :conjugation-4 :pres :subj :act "iam" "iās" "iat" "iāmus" "iātis" "iant")
                        (mk-endings :conjugation-4 :pres :ind :pas "ior" "īris" "ītur" "īmur" "īminī" "iumtur" "īre" nil)
                        (mk-endings :conjugation-4 :pres :subj :pas "iar" "iāris" "iātur" "iāmur" "iāminī" "iantur" "iāre" nil)
+
+                       (mk-endings :conjugation-4 :imperf :ind :act "iēbam" "iēbās" "iēbat" "iēbāmus" "iēbātis" "iēbant")
+                       (mk-endings :conjugation-4 :imperf :subj :act "īrem" "īrēs" "īret" "īrēmus" "īrētis" "īrent")
+                       (mk-endings :conjugation-4 :imperf :ind :pass "iēbar" "iēbāris" "iēbātur" "iēbāmur" "iēbāminī" "iēbantur" "iēbāre" nil)
+                       (mk-endings :conjugation-4 :imperf :subj :pass "īrer" "īrēris" "īrētur" "īrēmur" "īrēminī" "īrentur" "īrēre" nil)
+
                        ;; 5
                        (mk-endings :conjugation-5 :pres :ind :act "iō" "is" "it" "imus" "itis" "iunt")
                        (mk-endings :conjugation-5 :pres :subj :act "iam" "iās" "iat" "iāmus" "iātis" "iant")
                        (mk-endings :conjugation-5 :pres :ind :pas  "ior" "eris" "itur" "imur" "iminī" "iuntur" "ere" nil)
                        (mk-endings :conjugation-5 :pres :subj :pas "iar" "iāris" "iātur" "iāmur" "iāminī" "iantur" "iāre" nil)
+
+                       (mk-endings :conjugation-5 :imperf :ind :act "iēbam" "iēbās" "iēbat" "iēbāmus" "iēbātis" "iēbant")
+                       (mk-endings :conjugation-5 :imperf :subj :act "erem" "erēs" "eret" "erēmus" "erētis" "erent")
+                       (mk-endings :conjugation-5 :imperf :ind :pass "iēbar" "iēbāris" "iēbātur" "iēbāmur" "iēbāminī" "iēbantur" "iēbāre" nil)
+                       (mk-endings :conjugation-5 :imperf :subj :pass "erer" "erēris" "erētur" "erēmur" "erēminī" "erentur" "erēre" nil)
                        ])
 
 (defn find-endings [conjugation tense mood voice]
