@@ -70,12 +70,25 @@
   (assert-forms ["dūcō" "dūcis" "dūcit" "dūcimus" "dūcitis" "dūcunt"] duco :conjugation-3 :pres :ind :act)
   (assert-forms ["audiō" "audīs" "audit" "audīmus" "audītis" "audiunt"] audio :conjugation-4 :pres :ind :act)
   (assert-forms ["capiō" "capis" "capit" "capimus" "capitis" "capiunt"] capio :conjugation-5 :pres :ind :act)
-  ;; present indicative passive
   ;; present subjunctive active
   (assert-forms ["amem" "amēs" "amet" "amēmus" "ametis" "ament"] amo :conjugation-1 :pres :subj :act)
   (assert-forms ["dēleam" "dēleās" "dēleat" "dēleāmus" "dēleātis" "dēleant"] deleo :conjugation-2 :pres :subj :act)
   (assert-forms ["dūcam" "dūcās" "dūcat" "dūcāmus" "dūcātis" "dūcant"] duco :conjugation-3 :pres :subj :act)
   (assert-forms ["audiam" "audiās" "audiat" "audiāmus" "audiātis" "audiant"] audio :conjugation-4 :pres :subj :act)
   (assert-forms ["capiam" "capiās" "capiat" "capiāmus" "capiātis" "capiant"] capio :conjugation-5 :pres :subj :act)
+  ;; present indicative passive
+  (assert-forms ["amor" "amāris" "amātur" "amāmur" "amāminī" "amantur" "amāre"] amo :conjugation-1 :pres :ind :pass)
+  (assert-forms ["dēleor" "dēlēris" "dēlētur" "dēlēmur" "dēlēminī" "dēlentur" "dēlēre" nil] deleo :conjugation-2 :pres :ind :pass)
+  (assert-forms ["dūcor" "dūceris" "dūciur" "dūcimur" "dūcīminī" "dūcuntur" "dūcere" nil] duco :conjugation-3 :pres :ind :pass)
+  (assert-forms ["audior" "audīris" "audītur" "audīmur" "audīminī" "audiuntur" "audīre" nil] audio :conjugation-4 :pres :ind :pass)
+  (assert-forms ["capior" "caperis" "capitur" "capiminī" "capiuntur" "capere" nil] capio :conjugation-5 :pres :ind :pass)
+  ;; present subjunctive passive
+  (assert-forms ["amer" "amēris" "amētur" "amēmur" "amēminī" "amentur" "amēre" nil] amo :conjugation-1 :pres :subj :pass)
+  (assert-forms ["dēlear" "dēleāris" "dēleātur" "dēleāmur" "dēleāminī" "dēleantur" "dēleāre" nil] deleo :conjugation-2 :pres :subj :pass)
+  (assert-forms ["dūcar" "dūcáris" "dūcātur" "dūcāmur" "dūcāminī" "dūcantur" "dūcāre" nil] duco :conjugation-3 :pres :subj :pass)
+  (assert-forms ["audiar" "audiāris" "audiātur" "audiāmur" "audiāminī" "audiāntur" "audiāre" nil] audio :conjugation-4 :pres :subj :pass)
+  (assert-forms ["capiar" "capiāris" "capiātur" "capiāmur" "capiāminī" "capiāntur" "capiāre" nil] capio :conjugation-5 :pres :subj :pass)
+
+
   )
 
