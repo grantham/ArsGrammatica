@@ -134,6 +134,34 @@
 
   (assert-forms ["capiam" "capiēs" "capiet" "capiēmus" "capiētis" "capient"] capio :conjugation-5 :fut :ind :act)
   (assert-forms ["capiar" "capiēris" "capiētur" "capiēmur" "capiēminī" "capientur" "capiēre" nil] capio :conjugation-5 :fut :ind :pass)
+  ;;
+  ;; PERFECT SYSTEM
+  ;;
+  (assert-forms ["amāuī" "amāuistī" "amāuit" "amāuimus" "amāuistis" "amāuērunt" "amāuēre"] amo :conjugation-1 :perf :ind :act)
+  (assert-forms ["amāuerim" "amāuerīs" "amāuerit" "amāuerīmus" "amāuerītis" "amāuerint"] amo :conjugation-1 :perf :subj :act)
+  (assert-forms ["amātus sum" "amātus es" "amātus est" "amātī sumus" "amātī estis" "amātī sunt"] amo :conjugation-1 :perf :ind :pass)
+  (assert-forms ["amātus sim" "amātus sīs" "amātus sit" "amātī sīmus" "amātī sītis" "amātī sint"] amo :conjugation-1 :perf :subj :pass)
+
+
+  (assert-forms ["dēlēuī" "dēlēuistī" "dēlēuit" "dēlēuimus" "dēlēuistis" "dēlēuērunt" "dēlēuēre"] deleo :conjugation-2 :perf :ind :act)
+  (assert-forms ["dēlēuerim" "dēlēuerīs" "dēlēuerit" "dēlēuerīmus" "dēlēuerītis" "dēlēuerint"] deleo :conjugation-2 :perf :subj :act)
+  (assert-forms ["dēlētus sum" "dēlētus es" "dēlētus est" "dēlētī sumus" "dēlētī estis" "dēlētī sunt"] deleo :conjugation-2 :perf :ind :pass)
+  (assert-forms ["dēlētus sim" "dēlētus sīs" "dēlētus sit" "dēlētī sīmus" "dēlētī sītis" "dēlētī sint"] deleo :conjugation-2 :perf :subj :pass)
+
+  (assert-forms ["dūxī" "dūxistī" "dūxit" "dūximus" "dūxistis" "dūxērunt" "dūxēre"] duco :conjugation-3 :perf :ind :act)
+  (assert-forms ["dūxerim" "dūxerīs" "dūxerit" "dūxerīmus" "dūxerītis" "dūxerint"] duco :conjugation-3 :perf :subj :act)
+  (assert-forms ["ductus sum" "ductus es" "ductus est" "ductī sumus" "ductī estis" "ductī sunt"] duco :conjugation-3 :perf :ind :pass)
+  (assert-forms ["ductus sim" "ductus sīs" "ductus sit" "ductī sīmus" "ductī sītis" "ductī sint"] duco :conjugation-3 :perf :subj :pass)
+
+  (assert-forms ["audīuī" "audīuistī" "audīuit" "audīuimus" "audīuistis" "audīuērunt" "audīuēre"] audio :conjugation-4 :perf :ind :act)
+  (assert-forms ["audīuerim" "audīuerīs" "audīuerit" "audīuerīmus" "audīuerītis" "audīuerint"] audio :conjugation-4 :perf :subj :act)
+  (assert-forms ["audītus sum" "audītus es" "audītus est" "audītī sumus" "audītī estis" "audītī sunt"] audio :conjugation-4 :perf :ind :pass)
+  (assert-forms ["audītus sim" "audītus sīs" "audītus sit" "audītī sīmus" "audītī sītis" "audītī sint"] audio :conjugation-4 :perf :subj :pass)
+
+  (assert-forms ["cēpī" "cēpistī" "cēpit" "cēpimus" "cēpistis" "cēpērunt" "cēpēre"] capio :conjugation-5 :perf :ind :act)
+  (assert-forms ["cēperim" "cēperīs" "cēperit" "cēperīmus" "cēperītis" "cēperint"] capio :conjugation-5 :perf :subj :act)
+  (assert-forms ["captus sum" "captus es" "captus est" "captī sumus" "captī estis" "captī sunt"] capio :conjugation-5 :perf :ind :pass)
+  (assert-forms ["captus sim" "captus sīs" "captus sit" "captī sīmus" "captī sītis" "captī sint"] capio :conjugation-5 :perf :subj :pass)
 
   )
 
