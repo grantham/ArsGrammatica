@@ -117,6 +117,23 @@
   (assert-forms ["caperem" "caperēs" "caperet" "caperēmus" "caperētis" "caperent"] capio :conjugation-5 :imperf :subj :act)
   (assert-forms ["capiēbar" "capiēbāris" "capiēbātur" "capiēbāmur" "capiēbāminī" "capiēbantur" "capiēbāre"] capio :conjugation-5 :imperf :ind :pass)
   (assert-forms ["caperer" "caperēris" "caperētur" "caperēmur" "caperēminī" "caperentur" "caperēre"] capio :conjugation-5 :imperf :subj :pass)
+  ;;
+  ;; FUTURE SYSTEM
+  ;;
+  (assert-forms ["amābō" "amābis" "amābit" "amābīmus" "amābitits" "amābunt"] amo :conjugation-1 :fut :ind :act)
+  (assert-forms ["amābor" "amāberis" "amābitur" "amābimur" "amābiminī" "amābuntur"] amo :conjugation-1 :fut :ind :pass)
+
+  (assert-forms ["dēlēbō" "dēlēbis" "dēlēbit" "dēlēbimus" "dēlēbitis" "dēlēbunt"] deleo :conjugation-2 :fut :ind :act)
+  (assert-forms ["dēlēbor" "dēlēberis" "dēlēbitur" "dēlēbimur" "dēlēbiminī" "dēlēbuntur" "dēlēbere" nil] deleo :conjugation-2 :fut :ind :pass)
+
+  (assert-forms ["dūcam" "dūcēs" "dūcet" "dūcēmus" "dūcētis" "dūcent"] duco :conjugation-3 :fut :ind :act)
+  (assert-forms ["dūcar" "dūcēris" "dūcētur" "dūcēmur" "dūcēminī" "dūcentur" "dūcēre" nil] duco :conjugation-3 :fut :ind :pass)
+
+  (assert-forms ["audiam" "audiēs" "audiet" "audiēmus" "audiētis" "audient"] audio :conjugation-4 :fut :ind :act)
+  (assert-forms ["audiar" "audiēris" "audiētur" "audiēmur" "audiēminī" "audientur" "audiēre" nil] audio :conjugation-4 :fut :ind :pass)
+
+  (assert-forms ["capiam" "capiēs" "capiet" "capiēmus" "capiētis" "capient"] capio :conjugation-5 :fut :ind :act)
+  (assert-forms ["capiar" "capiēris" "capiētur" "capiēmur" "capiēminī" "capientur" "capiēre" nil] capio :conjugation-5 :fut :ind :pass)
 
   )
 

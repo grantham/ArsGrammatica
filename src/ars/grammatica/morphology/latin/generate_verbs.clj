@@ -127,6 +127,9 @@
                        (mk-endings :conjugation-3 :imperf :ind :pass "ēbar" "ēbāris" "ēbātur" "ēbāmur" "ēbāminī" "ēbantur" "ēbāre" nil)
                        (mk-endings :conjugation-3 :imperf :subj :pass "erer" "erēris" "erētur" "erēmur" "erēminī" "erentur" "erēre" nil)
 
+                       (mk-endings :conjugation-3 :fut :ind :act "am" "ēs" "et" "ēmus" "ētis" "ent")
+                       (mk-endings :conjugation-3 :fut :ind :pass "ar" "ēris" "ētur" "ēmur" "ēminī" "entur" "ēre" nil)
+
 
                        ;; 4
                        (mk-endings :conjugation-4 :pres :ind :act "iō" "īs" "it" "īmus" "ītis" "iunt")
@@ -139,6 +142,9 @@
                        (mk-endings :conjugation-4 :imperf :ind :pass "iēbar" "iēbāris" "iēbātur" "iēbāmur" "iēbāminī" "iēbantur" "iēbāre" nil)
                        (mk-endings :conjugation-4 :imperf :subj :pass "īrer" "īrēris" "īrētur" "īrēmur" "īrēminī" "īrentur" "īrēre" nil)
 
+                       (mk-endings :conjugation-4 :fut :ind :act "iam" "iēs" "iet" "iēmus" "iētis" "ient")
+                       (mk-endings :conjugation-4 :fut :ind :pass "iar" "iēris" "iētur" "iēmur" "iēminī" "ientur" "iēre" nil)
+
                        ;; 5
                        (mk-endings :conjugation-5 :pres :ind :act "iō" "is" "it" "imus" "itis" "iunt")
                        (mk-endings :conjugation-5 :pres :subj :act "iam" "iās" "iat" "iāmus" "iātis" "iant")
@@ -149,6 +155,10 @@
                        (mk-endings :conjugation-5 :imperf :subj :act "erem" "erēs" "eret" "erēmus" "erētis" "erent")
                        (mk-endings :conjugation-5 :imperf :ind :pass "iēbar" "iēbāris" "iēbātur" "iēbāmur" "iēbāminī" "iēbantur" "iēbāre" nil)
                        (mk-endings :conjugation-5 :imperf :subj :pass "erer" "erēris" "erētur" "erēmur" "erēminī" "erentur" "erēre" nil)
+
+                       (mk-endings :conjugation-5 :fut :ind :act "iam" "iēs" "iet" "iēmus" "iētis" "ient")
+                       (mk-endings :conjugation-5 :fut :ind :pass "iar" "iēris" "iētur" "iēmur" "iēminī" "ientur" "iēre" nil)
+
                        ])
 
 (defn find-endings [conjugation tense mood voice]
