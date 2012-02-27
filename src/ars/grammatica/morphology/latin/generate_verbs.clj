@@ -49,6 +49,7 @@
    ([conjugation tense mood voice s1 s2 s3 p1 p2 p3 s2-alt p3-alt]
     (endings. conjugation tense mood voice s1 s2 s3 p1 p2 p3 s2-alt p3-alt)))
 
+;; TODO: correct for dic duc (fer fac) imperative forms
 (def regular-endings [
                        ;; 1
                        (mk-endings :conjugation-1 :pres :ind :act "ō" "ās" "at" "āmus" "ātis" "ant")
@@ -78,10 +79,6 @@
                        (mk-endings :conjugation-1 :futperf :ind :pass "us erō" "us eris" "us erit" "ī erimus" "ī eritis" "ī erunt")
 
                        (mk-endings :conjugation-1 :pres :imperat :act nil "ā" nil nil "āte" nil)
-                       (mk-endings :conjugation-1 :pres :imperat :pass nil "āre" nil nil "āminī" nil)
-
-                       (mk-endings :conjugation-1 :fut :imperat :act nil "ātō" "ātō" nil "ātōte" "antō")
-                       (mk-endings :conjugation-1 :fut :imperat :pass nil "ātor" "ātor" nil nil "antantor")
 
                        ;; 2
                        (mk-endings :conjugation-2 :pres :ind :act "eō" "ēs" "et" "ēmus" "ētis" "ent")
@@ -110,6 +107,8 @@
                        (mk-endings :conjugation-2 :futperf :ind :act  "erō" "eris" "erit" "erimus"  "eritis" "erint")
                        (mk-endings :conjugation-2 :futperf :ind :pass "us erō" "us eris" "us erit" "ī erimus" "ī eritis" "ī erunt")
 
+                       (mk-endings :conjugation-2 :pres :imperat :act nil "ē" nil nil "ēte" nil)
+
                        ;; 3
                        (mk-endings :conjugation-3 :pres :ind :act "ō" "is" "it" "imus" "itis" "unt")
                        (mk-endings :conjugation-3 :pres :subj :act "am" "ās" "at" "āmus" "ātis" "ant")
@@ -136,6 +135,8 @@
 
                        (mk-endings :conjugation-3 :futperf :ind :act "erō" "eris" "erit" "erimus"  "eritis" "erint")
                        (mk-endings :conjugation-3 :futperf :ind :pass "us erō" "us eris" "us erit" "ī erimus" "ī eritis" "ī erunt")
+
+                       (mk-endings :conjugation-3 :pres :imperat :act nil "e" nil nil "ite" nil)
 
                        ;; 4
                        (mk-endings :conjugation-4 :pres :ind :act "iō" "īs" "it" "īmus" "ītis" "iunt")
@@ -164,6 +165,8 @@
                        (mk-endings :conjugation-4 :futperf :ind :act "erō" "eris" "erit" "erimus"  "eritis" "erint")
                        (mk-endings :conjugation-4 :futperf :ind :pass "us erō" "us eris" "us erit" "ī erimus" "ī eritis" "ī erunt")
 
+                       (mk-endings :conjugation-4 :pres :imperat :act nil "ī" nil nil "īte" nil)
+
                        ;; 5
                        (mk-endings :conjugation-5 :pres :ind :act "iō" "is" "it" "imus" "itis" "iunt")
                        (mk-endings :conjugation-5 :pres :subj :act "iam" "iās" "iat" "iāmus" "iātis" "iant")
@@ -190,6 +193,8 @@
 
                        (mk-endings :conjugation-5 :futperf :ind :act "erō" "eris" "erit" "erimus"  "eritis" "erint")
                        (mk-endings :conjugation-5 :futperf :ind :pass "us erō" "us eris" "us erit" "ī erimus" "ī eritis" "ī erunt")
+
+                       (mk-endings :conjugation-5 :pres :imperat :act nil "e" nil nil "ite" nil)
 
                        ])
 
@@ -222,7 +227,7 @@
   (stem (:participle verb-entry) "us"))
 
 (defn stem-for-endings [verb-entry verb-endings]
-  "Given a lexicon entry for a verb and the targeted endings isntance, furnishes the right stem to which the endings
+  "Given a lexicon entry for a verb and the targeted endings instance, furnishes the right stem to which the endings
   can be applied to conjugate the verb."
   (let [tense (:tense verb-endings)
         voice (:voice verb-endings)]
@@ -235,19 +240,47 @@
           (get-perfect-stem verb-entry)
       :else (get-present-stem verb-entry))))
 
-(defn analysis-from-endings [form verb-entry verb-endings]
-  (if (nil? (form verb-endings))
+(defn matches-endings? [endings match-spec]
+  "True if the endings instance matches the values in the match-spec (a map of endings fields).
+  Keys: [conjugation tense mood voice s1 s2 s3 p1 p2 p3 s2-alt p3-alt]"
+  (reduce
+    #(and %1 (= ((first %2) endings) (first (rest %2))))
+    true
+    match-spec))
+
+(defn make-irregular-imperative [verb-entry verb-endings]
+  (cond
+    (= "dīcō" (:first-present verb-entry))
+    "dīc"
+    (= "dūcō" (:first-present verb-entry))
+    "dūc"
+    :else nil))
+
+(defn make-form [personal-ending-id verb-entry verb-endings]
+  (cond
+    (and
+      (matches-endings? verb-endings {:tense :pres :mood :imperat :voice :act})
+      (or (= "dīcō" (:first-present verb-entry)) (= "dūcō" (:first-present verb-entry)))
+      (= personal-ending-id :s2))
+    (make-irregular-imperative verb-entry verb-endings)
+    :else (str (stem-for-endings verb-entry verb-endings) (personal-ending-id verb-endings))))
+
+(defn analysis-from-endings [personal-ending-id verb-entry verb-endings]
+  "Creates an analysis with the designated personal-ending-id (one of [:s1-:s3, :p1-:p3, :s2-alt, :p3-alt]) from the
+  given entry and endings instances."
+  (if (nil? (personal-ending-id verb-endings))
     nil
-    (make-analysis {
-      :form (str (stem-for-endings verb-entry verb-endings) (form verb-endings))
-      :plain-form (remove-macrons (str (stem-for-endings verb-entry verb-endings) (form verb-endings)))
-      :lemma (:lemma verb-entry)
-      :pos "verb"
-      :person (name (form personal-endings))
-      :number (name (form number))
-      :tense (name (:tense verb-endings))
-      :mood (name (:mood verb-endings))
-      :voice (name (:voice verb-endings))})))
+    (let [form (make-form personal-ending-id verb-entry verb-endings)]
+      (make-analysis {
+                       :form form
+                       :plain-form (remove-macrons form)
+                       :lemma (:first-present verb-entry)
+                       :pos "verb"
+                       :person (name (personal-ending-id personal-endings))
+                       :number (name (personal-ending-id number))
+                       :tense (name (:tense verb-endings))
+                       :mood (name (:mood verb-endings))
+                       :voice (name (:voice verb-endings))}))))
 
 (defn analyses-from-endings [verb-entry endings]
   (filter (complement nil?)

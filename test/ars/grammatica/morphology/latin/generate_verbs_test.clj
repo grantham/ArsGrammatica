@@ -34,7 +34,9 @@
 
 (def amo (verb "amō" "amāre" "amāuī" "amātus" :conjugation-3 "love, like, be fond of"))
 (def deleo (verb "dēleō" "dēlēre" "dēlēuī" "dēlētus" :conjugation-2 "blot out, destroy"))
+(def dico (verb "dīcō" "dīcere" "dīxī" "dictus" :conjugation-3 "say, speak, tell. Usually introduces indirect discourse"))
 (def duco (verb "dūcō" "dūcere" "dūxī" "ductus" :conjugation-3 "(imperative dūc), lead, conduct"))
+(def posco (verb "poscō" "poscere" "popōscī" "" :conjugation-3 "to ask urgently, beg, demand, request, desire"))
 (def audio (verb "audiō" "audīre" "audīuī" "audītus" :conjugation-4 "hear, listen to"))
 (def capio (verb "capiō" "capere" "cēpī" "captus" :conjugation-5 "take, seize, capture"))
 (def sequor (verb "sequor" "sequī" "secūtus sum" "" :conjugation-3 "follow" :deponent))
@@ -206,6 +208,15 @@
 
   (assert-forms ["cēperō" "cēperis" "cēperit" "cēperimus"  "cēperitis" "cēperint"] capio :conjugation-5 :futperf :ind :act)
   (assert-forms ["captus erō" "captus eris" "captus erit" "captī erimus" "captī eritis" "captī erunt"] capio :conjugation-5 :futperf :ind :pass)
-
+  ;;
+  ;; PRESENT IMPERATIVE
+  ;;
+  (assert-forms ["amā" "amāte" ] amo :conjugation-1 :pres :imperat :act )
+  (assert-forms ["dēlē" "dēlēte" ] deleo :conjugation-2 :pres :imperat :act )
+  (assert-forms ["dīc" "dīcite" ] dico :conjugation-3 :pres :imperat :act )
+  (assert-forms ["dūc" "dūcite" ] duco :conjugation-3 :pres :imperat :act )
+  (assert-forms ["posce" "poscite" ] posco :conjugation-3 :pres :imperat :act )
+  (assert-forms ["audī" "audīte" ] audio :conjugation-4 :pres :imperat :act )
+  (assert-forms ["cape" "capite" ] capio :conjugation-5 :pres :imperat :act )
   )
 

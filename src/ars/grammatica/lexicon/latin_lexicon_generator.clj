@@ -1281,6 +1281,7 @@
 (verb "placeō" "placēre" "placuī" "placitus" :conjugation-2 "please, be pleasing, with dat.")
 (verb "pōnō" "pōnere" "posuī" "positus" :conjugation-3 "put, place; castra pōnere, pitch camp")
 (verb "portō" "portāre" "portāuī" "portātus" :conjugation-1 "bear, carry")
+(verb "poscō" "poscere" "popōscī" "" :conjugation-3 "to ask urgently, beg, demand, request, desire")
 (verb "possideō" "possidēre" "possēdī" "possessus" :conjugation-2 "have, own, possess")
 (verb "possum" "posse" "potuī" "" :irregular "be able, can; nihil posse, have no power")
 (verb "postulō" "postulāre" "postulāuī" "postulātus" :conjugation-1 "ask, demand, require. Cf. petō, quaerō, rogō")
