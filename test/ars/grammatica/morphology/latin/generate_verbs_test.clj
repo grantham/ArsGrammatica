@@ -39,6 +39,12 @@
 (def posco (verb "poscō" "poscere" "popōscī" "" :conjugation-3 "to ask urgently, beg, demand, request, desire"))
 (def audio (verb "audiō" "audīre" "audīuī" "audītus" :conjugation-4 "hear, listen to"))
 (def capio (verb "capiō" "capere" "cēpī" "captus" :conjugation-5 "take, seize, capture"))
+
+(def minor (verb "minor" "minārī" "minātus sum" "" :conjugation-1 "to threaten" :deponent))
+(def polliceor (verb "polliceor" "polliērī" "pollicitus sum" "" :conjugation-2 "to promise" :deponent))
+(def loquor (verb "loquor" "loquī" "locūtus sum" "" :conjugation-3 "to speak" :deponent))
+(def mentior (verb "mentior" "mentīrī" "mentītis sum" "" :conjugation-4 "to lie" :deponent))
+(def progredior (verb "prōgredior" "prōgredī" "prōgressus sum" "" :conjugation-5 "to advance" :deponent))
 (def sequor (verb "sequor" "sequī" "secūtus sum" "" :conjugation-3 "follow" :deponent))
 
 (deftest find-endings-test
@@ -51,9 +57,21 @@
 (deftest stem-test
   (is (= "am" (stem "amō" "ō"))))
 
+(defn assert-stem [expected entry]
+  (is (= expected (get-present-stem entry))))
+
 (deftest get-present-stem-test
-  (is (= "am" (get-present-stem (verb "amō" "amāre" "amāuī" "amātus" :conjugation-3 "love, like, be fond of"))))
-  (is (= "sequ" (get-present-stem (verb "sequor" "sequī" "secūtus sum" "" :conjugation-3 "follow" :deponent)))))
+  (assert-stem "am" amo)
+  (assert-stem "dēl" deleo)
+  (assert-stem "dīc" dico)
+  (assert-stem "dūc" duco)
+  (assert-stem "aud" audio)
+  (assert-stem "cap" capio)
+  (assert-stem "min" minor)
+  (assert-stem "pollic" polliceor)
+  (assert-stem "loqu" loquor)
+  (assert-stem "ment" mentior)
+  (assert-stem "prōgred" progredior))
 
 (defn assert-form [expected-form analysis]
   (is (= expected-form (:form analysis))))

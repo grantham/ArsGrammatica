@@ -49,7 +49,6 @@
    ([conjugation tense mood voice s1 s2 s3 p1 p2 p3 s2-alt p3-alt]
     (endings. conjugation tense mood voice s1 s2 s3 p1 p2 p3 s2-alt p3-alt)))
 
-;; TODO: correct for dic duc (fer fac) imperative forms
 (def regular-endings [
                        ;; 1
                        (mk-endings :conjugation-1 :pres :ind :act "ō" "ās" "at" "āmus" "ātis" "ant")
@@ -195,8 +194,12 @@
                        (mk-endings :conjugation-5 :futperf :ind :pass "us erō" "us eris" "us erit" "ī erimus" "ī eritis" "ī erunt")
 
                        (mk-endings :conjugation-5 :pres :imperat :act nil "e" nil nil "ite" nil)
-
                        ])
+
+(def deponent-endings [
+                        ])
+
+(def semi-deponent-endings [])
 
 (defn find-endings [conjugation tense mood voice]
   (first (doall
@@ -215,10 +218,10 @@
 (defn get-present-stem [verb-entry]
   (cond
     (or (= :conjugation-4 (:conjugation verb-entry))(= :conjugation-5 (:conjugation verb-entry)))
-      (stem (:first-present verb-entry) "i(ō|or)")
+      (stem (:first-present verb-entry) "(?:iō)|(?:ior)")
     (= :conjugation-2 (:conjugation verb-entry))
-      (stem (:first-present verb-entry) "e(ō|or)")
-    :else (stem (:first-present verb-entry) "ō|(or)")))
+      (stem (:first-present verb-entry) "(?:eō)|(?:eor)")
+    :else (stem (:first-present verb-entry) "(?:ō)|(?:or)")))
 
 (defn get-perfect-stem [verb-entry]
   (stem (:first-perfect verb-entry) "ī"))
