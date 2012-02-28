@@ -47,12 +47,15 @@
 (def progredior (verb "prōgredior" "prōgredī" "prōgressus sum" "" :conjugation-5 "to advance" :deponent))
 (def sequor (verb "sequor" "sequī" "secūtus sum" "" :conjugation-3 "follow" :deponent))
 
-(deftest find-endings-test
-  (is (not (nil? (find-endings :conjugation-1 :pres :ind :act))))
-  (is (not (nil? (find-endings :conjugation-2 :pres :ind :act))))
-  (is (not (nil? (find-endings :conjugation-3 :pres :ind :act))))
-  (is (not (nil? (find-endings :conjugation-4 :pres :ind :act))))
-  (is (not (nil? (find-endings :conjugation-5 :pres :ind :act)))))
+(defn find-endings [entry conjugation tense mood voice]
+  (first (doall
+           (filter
+             (fn [x] (and
+                       (= conjugation (:conjugation x))
+                       (= tense (:tense x))
+                       (= mood (:mood x))
+                       (= voice (:voice x))))
+             (if (= :deponent (:deponent-type entry)) deponent-endings regular-endings)))))
 
 (deftest stem-test
   (is (= "am" (stem "amō" "ō"))))
@@ -81,7 +84,7 @@
     (map
       assert-form
       expected-forms
-      (analyses-from-endings entry (find-endings conj tense mood voice)))))
+      (analyses-from-endings entry (find-endings entry conj tense mood voice)))))
 
 (deftest analyses-from-endings-test
   ;;
@@ -93,6 +96,12 @@
   (assert-forms ["audiō" "audīs" "audit" "audīmus" "audītis" "audiunt"] audio :conjugation-4 :pres :ind :act)
   (assert-forms ["capiō" "capis" "capit" "capimus" "capitis" "capiunt"] capio :conjugation-5 :pres :ind :act)
 
+  (assert-forms ["minor" "mināris" "minātur" "mināmur" "mināminī" "minantur" "mināre"] minor :conjugation-1 :pres :ind :act)
+  (assert-forms ["polliceor" "pollicēris" "pollicētur" "pollicēmur" "pollicēminī" "pollicentur" "pollicēre"] polliceor :conjugation-2 :pres :ind :act)
+  (assert-forms ["loquor" "loqueris" "loquitur" "loquimur" "loquiminī" "loquuntur" "loquere"] loquor :conjugation-3 :pres :ind :act)
+  (assert-forms ["mentior" "mentīris" "mentītur" "mentīmur" "mentīminī" "mentiuntur" "mentīre"] mentior :conjugation-4 :pres :ind :act)
+  (assert-forms ["prōgredior" "prōgrederis" "prōgreditur" "prōgredimur" "prōgrediminī" "prōgrediuntur" "prōgredere"] progredior :conjugation-5 :pres :ind :act)
+
   (assert-forms ["amem" "amēs" "amet" "amēmus" "ametis" "ament"] amo :conjugation-1 :pres :subj :act)
   (assert-forms ["dēleam" "dēleās" "dēleat" "dēleāmus" "dēleātis" "dēleant"] deleo :conjugation-2 :pres :subj :act)
   (assert-forms ["dūcam" "dūcās" "dūcat" "dūcāmus" "dūcātis" "dūcant"] duco :conjugation-3 :pres :subj :act)
@@ -101,15 +110,15 @@
 
   (assert-forms ["amor" "amāris" "amātur" "amāmur" "amāminī" "amantur" "amāre"] amo :conjugation-1 :pres :ind :pass)
   (assert-forms ["dēleor" "dēlēris" "dēlētur" "dēlēmur" "dēlēminī" "dēlentur" "dēlēre" nil] deleo :conjugation-2 :pres :ind :pass)
-  (assert-forms ["dūcor" "dūceris" "dūciur" "dūcimur" "dūcīminī" "dūcuntur" "dūcere" nil] duco :conjugation-3 :pres :ind :pass)
+  (assert-forms ["dūcor" "dūceris" "dūcitur" "dūcimur" "dūciminī" "dūcuntur" "dūcere" nil] duco :conjugation-3 :pres :ind :pass)
   (assert-forms ["audior" "audīris" "audītur" "audīmur" "audīminī" "audiuntur" "audīre" nil] audio :conjugation-4 :pres :ind :pass)
-  (assert-forms ["capior" "caperis" "capitur" "capiminī" "capiuntur" "capere" nil] capio :conjugation-5 :pres :ind :pass)
+  (assert-forms ["capior" "caperis" "capitur" "capimur" "capiminī" "capiuntur" "capere" nil] capio :conjugation-5 :pres :ind :pass)
 
   (assert-forms ["amer" "amēris" "amētur" "amēmur" "amēminī" "amentur" "amēre" nil] amo :conjugation-1 :pres :subj :pass)
   (assert-forms ["dēlear" "dēleāris" "dēleātur" "dēleāmur" "dēleāminī" "dēleantur" "dēleāre" nil] deleo :conjugation-2 :pres :subj :pass)
-  (assert-forms ["dūcar" "dūcáris" "dūcātur" "dūcāmur" "dūcāminī" "dūcantur" "dūcāre" nil] duco :conjugation-3 :pres :subj :pass)
-  (assert-forms ["audiar" "audiāris" "audiātur" "audiāmur" "audiāminī" "audiāntur" "audiāre" nil] audio :conjugation-4 :pres :subj :pass)
-  (assert-forms ["capiar" "capiāris" "capiātur" "capiāmur" "capiāminī" "capiāntur" "capiāre" nil] capio :conjugation-5 :pres :subj :pass)
+  (assert-forms ["dūcar" "dūcāris" "dūcātur" "dūcāmur" "dūcāminī" "dūcantur" "dūcāre" nil] duco :conjugation-3 :pres :subj :pass)
+  (assert-forms ["audiar" "audiāris" "audiātur" "audiāmur" "audiāminī" "audiantur" "audiāre" nil] audio :conjugation-4 :pres :subj :pass)
+  (assert-forms ["capiar" "capiāris" "capiātur" "capiāmur" "capiāminī" "capiantur" "capiāre" nil] capio :conjugation-5 :pres :subj :pass)
   ;;
   ;; IMPERFECT SYSTEM
   ;;
