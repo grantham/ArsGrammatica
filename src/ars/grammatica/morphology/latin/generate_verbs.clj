@@ -34,6 +34,10 @@
         [ars.grammatica.morphology.analysis])
   (:require [clojure.string :as s]))
 
+;; TODO: semi-deponent verbs
+;; TODO: infinitives (present, perfect, passive)
+;; TODO: sum and other irregular verbs
+
 (def personal-endings {:s1 "1st" :s2 "2nd" :s3 "3rd" :p1 "1st" :p2 "2nd" :p3 "3rd" :s2-alt "2nd" :p3-alt "3rd"})
 (def number {:s1 "sg" :s2 "sg" :s3 "sg" :p1 "pl" :p2 "pl" :p3 "pl" :s2-alt "sg" :p3-alt "pl"})
 
@@ -215,6 +219,8 @@
                         (mk-endings :conjugation-1 :futperf :ind :act "erō" "eris" "erit" "erimus"  "eritis" "erint")
                         (mk-endings :conjugation-1 :futperf :ind :act "us erō" "us eris" "us erit" "ī erimus" "ī eritis" "ī erunt")
 
+                        (mk-endings :conjugation-1 :pres :imperat :act nil "āre" nil nil "āminī" nil)
+
                         ;; 2
                         (mk-endings :conjugation-2 :pres :ind :act "eor" "ēris" "ētur" "ēmur" "ēminī" "entur" "ēre" nil)
                         (mk-endings :conjugation-2 :pres :subj :act "ear" "eāris" "eātur" "eāmur" "eāminī" "eantur" "eāre" nil)
@@ -231,6 +237,8 @@
                         (mk-endings :conjugation-2 :plup :subj :act "us essem" "us essēs" "us esset" "ī essēmus" "ī essētis" "ī essent")
 
                         (mk-endings :conjugation-2 :futperf :ind :act "us erō" "us eris" "us erit" "ī erimus" "ī eritis" "ī erunt")
+
+                        (mk-endings :conjugation-2 :pres :imperat :act nil "ēre" nil nil "ēminī" nil)
 
                         ;; 3
                         (mk-endings :conjugation-3 :pres :ind :act "or" "eris" "itur" "imur" "iminī" "untur" "ere" nil)
@@ -249,6 +257,8 @@
 
                         (mk-endings :conjugation-3 :futperf :ind :act "us erō" "us eris" "us erit" "ī erimus" "ī eritis" "ī erunt")
 
+                        (mk-endings :conjugation-3 :pres :imperat :act nil "ere" nil nil "iminī" nil)
+
                         ;; 4
                         (mk-endings :conjugation-4 :pres :ind :act "ior" "īris" "ītur" "īmur" "īminī" "iuntur" "īre" nil)
                         (mk-endings :conjugation-4 :pres :subj :act "iar" "iāris" "iātur" "iāmur" "iāminī" "iantur" "iāre" nil)
@@ -266,6 +276,8 @@
 
                         (mk-endings :conjugation-4 :futperf :ind :act "us erō" "us eris" "us erit" "ī erimus" "ī eritis" "ī erunt")
 
+                        (mk-endings :conjugation-4 :pres :imperat :act nil "īre" nil nil "īminī" nil)
+
                         ;; 5
                         (mk-endings :conjugation-5 :pres :ind :act  "ior" "eris" "itur" "imur" "iminī" "iuntur" "ere" nil)
                         (mk-endings :conjugation-5 :pres :subj :act "iar" "iāris" "iātur" "iāmur" "iāminī" "iantur" "iāre" nil)
@@ -282,6 +294,8 @@
                         (mk-endings :conjugation-5 :plup :subj :act "us essem" "us essēs" "us esset" "ī essēmus" "ī essētis" "ī essent")
 
                         (mk-endings :conjugation-5 :futperf :ind :act "us erō" "us eris" "us erit" "ī erimus" "ī eritis" "ī erunt")
+
+                        (mk-endings :conjugation-5 :pres :imperat :act nil "ere" nil nil "iminī" nil)
 
                         ])
 

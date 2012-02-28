@@ -245,5 +245,12 @@
   (assert-forms ["posce" "poscite" ] posco :conjugation-3 :pres :imperat :act )
   (assert-forms ["audī" "audīte" ] audio :conjugation-4 :pres :imperat :act )
   (assert-forms ["cape" "capite" ] capio :conjugation-5 :pres :imperat :act )
+
+  (assert-forms ["mināre" "mināminī" ] minor :conjugation-1 :pres :imperat :act )
+  (assert-forms ["pollicēre" "pollicēminī" ] polliceor :conjugation-2 :pres :imperat :act )
+  (assert-forms ["loquere" "loquiminī" ] loquor :conjugation-3 :pres :imperat :act )
+  (assert-forms ["mentīre" "mentīminī" ] mentior :conjugation-4 :pres :imperat :act )
+  (assert-forms ["prōgredere" "prōgrediminī" ] progredior :conjugation-5 :pres :imperat :act )
+
   )
 
