@@ -29,6 +29,7 @@
   ars.grammatica.lexicon.latin-lexicon-generator
   (:use [ars.grammatica.lexicon.entry]))
 
+;; TODO: mark transitive verbs with 4th pp in -us, intransitive in -um
 (defn make-adjectives []
 (vector
 (adjective "ācer" "ācris" "ācre" "ācris" :declension-3 "sharp; figuratively, keen, active, eager ")

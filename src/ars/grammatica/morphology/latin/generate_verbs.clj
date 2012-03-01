@@ -34,7 +34,6 @@
         [ars.grammatica.morphology.analysis])
   (:require [clojure.string :as s]))
 
-;; TODO: semi-deponent verbs
 ;; TODO: infinitives (present, perfect, passive)
 ;; TODO: sum and other irregular verbs
 
