@@ -299,7 +299,130 @@
 
                         ])
 
-(def semi-deponent-endings [])
+(def semi-deponent-endings [
+
+                             ;; 1
+                             (mk-endings :conjugation-1 :pres :ind :act "ō" "ās" "at" "āmus" "ātis" "ant")
+                             (mk-endings :conjugation-1 :pres :ind :pass "or" "āris" "ātur" "āmur" "āminī" "antur" "āre" nil)
+                             (mk-endings :conjugation-1 :pres :subj :act "em" "ēs" "et" "ēmus" "etis" "ent")
+                             (mk-endings :conjugation-1 :pres :subj :pass "er" "ēris" "ētur" "ēmur" "ēminī" "entur" "ēre" nil)
+
+                             (mk-endings :conjugation-1 :imperf :ind :act "ābam" "ābas" "ābat" "ābamus" "ābatis" "ābant")
+                             (mk-endings :conjugation-1 :imperf :ind :pass "ābar" "ābāris" "ābātur" "ābāmur" "ābāminī" "ābantur" "ābāre" nil)
+                             (mk-endings :conjugation-1 :imperf :subj :act "ārem" "ārēs" "āret" "ārēmus" "ārētis" "ārent")
+                             (mk-endings :conjugation-1 :imperf :subj :pass "ārer" "ārēris" "ārētur" "ārēmur" "ārēminī" "ārentur" "arēre" nil)
+
+                             (mk-endings :conjugation-1 :fut :ind :act "ābō" "ābis" "ābit" "ābīmus" "ābitits" "ābunt")
+                             (mk-endings :conjugation-1 :fut :ind :pass "ābor" "āberis" "ābitur" "ābimur" "ābiminī" "ābuntur")
+
+                             (mk-endings :conjugation-1 :perf :ind :act "us sum" "us es" "us est" "ī sumus" "ī estis" "ī sunt")
+                             (mk-endings :conjugation-1 :perf :subj :act "us sim" "us sīs" "us sit" "ī sīmus" "ī sītis" "ī sint")
+
+                             (mk-endings :conjugation-1 :plup :ind :act "us eram" "us erās" "us erat" "ī erāmus" "ī erātis" "ī erant")
+                             (mk-endings :conjugation-1 :plup :subj :act "us essem" "us essēs" "us esset" "ī essēmus" "ī essētis" "ī essent")
+
+                             (mk-endings :conjugation-1 :futperf :ind :act "erō" "eris" "erit" "erimus"  "eritis" "erint")
+                             (mk-endings :conjugation-1 :futperf :ind :act "us erō" "us eris" "us erit" "ī erimus" "ī eritis" "ī erunt")
+
+                             (mk-endings :conjugation-1 :pres :imperat :act nil "ā" nil nil "āte" nil)
+
+                             ;; 2
+                             (mk-endings :conjugation-2 :pres :ind :act "eō" "ēs" "et" "ēmus" "ētis" "ent")
+                             (mk-endings :conjugation-2 :pres :ind :pass "eor" "ēris" "ētur" "ēmur" "ēminī" "entur" "ēre" nil)
+                             (mk-endings :conjugation-2 :pres :subj :act "eam" "eās" "eat" "eāmus" "eātis" "eant")
+                             (mk-endings :conjugation-2 :pres :subj :pass "ear" "eāris" "eātur" "eāmur" "eāminī" "eantur" "eāre" nil)
+
+                             (mk-endings :conjugation-2 :imperf :ind :act "ēbam" "ēbās" "ēbat" "ēbāmus" "ābātis" "ēbant")
+                             (mk-endings :conjugation-2 :imperf :subj :act "ērem" "ērēs" "ēret" "ērēmus" "ērētis" "ērent")
+                             (mk-endings :conjugation-2 :imperf :ind :pass "ēbar" "ēbāris" "ēbātur" "ēbāmur" "ēbāminī" "ēbantur" "ēbāre" nil)
+                             (mk-endings :conjugation-2 :imperf :subj :pass "ērer" "ērēris" "ērētur" "ērēmur" "ērēmini" "ērentur" "ērēre" nil)
+
+                             (mk-endings :conjugation-2 :fut :ind :act "ēbō" "ēbis" "ēbit" "ēbimus" "ēbitis" "ēbunt")
+                             (mk-endings :conjugation-2 :fut :ind :pass "ēbor" "ēberis" "ēbitur" "ēbimur" "ēbiminī" "ēbuntur" "ēbere" nil)
+
+                             (mk-endings :conjugation-2 :perf :ind :act "us sum" "us es" "us est" "ī sumus" "ī estis" "ī sunt")
+                             (mk-endings :conjugation-2 :perf :subj :act "us sim" "us sīs" "us sit" "ī sīmus" "ī sītis" "ī sint")
+
+                             (mk-endings :conjugation-2 :plup :ind :act "us eram" "us erās" "us erat" "ī erāmus" "ī erātis" "ī erant")
+                             (mk-endings :conjugation-2 :plup :subj :act "us essem" "us essēs" "us esset" "ī essēmus" "ī essētis" "ī essent")
+
+                             (mk-endings :conjugation-2 :futperf :ind :act "us erō" "us eris" "us erit" "ī erimus" "ī eritis" "ī erunt")
+
+                             (mk-endings :conjugation-2 :pres :imperat :act nil "ē" nil nil "ēte" nil)
+
+                             ;; 3
+                             (mk-endings :conjugation-3 :pres :ind :act "ō" "is" "it" "imus" "itis" "unt")
+                             (mk-endings :conjugation-3 :pres :subj :act "am" "ās" "at" "āmus" "ātis" "ant")
+                             (mk-endings :conjugation-3 :pres :ind :pass "or" "eris" "itur" "imur" "iminī" "untur" "ere" nil)
+                             (mk-endings :conjugation-3 :pres :subj :pass "ar" "āris" "ātur" "āmur" "āminī" "antur" "āre" nil)
+
+                             (mk-endings :conjugation-3 :imperf :ind :act "ēbam" "ēbās" "ābat" "ēbāmus" "ābātis" "ēbant")
+                             (mk-endings :conjugation-3 :imperf :subj :act "erem" "erēs" "eret" "erēmus" "erētis" "erent")
+                             (mk-endings :conjugation-3 :imperf :ind :pass "ēbar" "ēbāris" "ēbātur" "ēbāmur" "ēbāminī" "ēbantur" "ēbāre" nil)
+                             (mk-endings :conjugation-3 :imperf :subj :pass "erer" "erēris" "erētur" "erēmur" "erēminī" "erentur" "erēre" nil)
+
+                             (mk-endings :conjugation-3 :fut :ind :act "am" "ēs" "et" "ēmus" "ētis" "ent")
+                             (mk-endings :conjugation-3 :fut :ind :pass "ar" "ēris" "ētur" "ēmur" "ēminī" "entur" "ēre" nil)
+
+                             (mk-endings :conjugation-3 :perf :ind :act "us sum" "us es" "us est" "ī sumus" "ī estis" "ī sunt")
+                             (mk-endings :conjugation-3 :perf :subj :act "us sim" "us sīs" "us sit" "ī sīmus" "ī sītis" "ī sint")
+
+                             (mk-endings :conjugation-3 :plup :ind :act "us eram" "us erās" "us erat" "ī erāmus" "ī erātis" "ī erant")
+                             (mk-endings :conjugation-3 :plup :subj :act "us essem" "us essēs" "us esset" "ī essēmus" "ī essētis" "ī essent")
+
+                             (mk-endings :conjugation-3 :futperf :ind :act "us erō" "us eris" "us erit" "ī erimus" "ī eritis" "ī erunt")
+
+                             (mk-endings :conjugation-3 :pres :imperat :act nil "e" nil nil "ite" nil)
+
+                             ;; 4
+                             (mk-endings :conjugation-4 :pres :ind :act "iō" "īs" "it" "īmus" "ītis" "iunt")
+                             (mk-endings :conjugation-4 :pres :subj :act "iam" "iās" "iat" "iāmus" "iātis" "iant")
+                             (mk-endings :conjugation-4 :pres :ind :pass "ior" "īris" "ītur" "īmur" "īminī" "iuntur" "īre" nil)
+                             (mk-endings :conjugation-4 :pres :subj :pass "iar" "iāris" "iātur" "iāmur" "iāminī" "iantur" "iāre" nil)
+
+                             (mk-endings :conjugation-4 :imperf :ind :act "iēbam" "iēbās" "iēbat" "iēbāmus" "iēbātis" "iēbant")
+                             (mk-endings :conjugation-4 :imperf :subj :act "īrem" "īrēs" "īret" "īrēmus" "īrētis" "īrent")
+                             (mk-endings :conjugation-4 :imperf :ind :pass "iēbar" "iēbāris" "iēbātur" "iēbāmur" "iēbāminī" "iēbantur" "iēbāre" nil)
+                             (mk-endings :conjugation-4 :imperf :subj :pass "īrer" "īrēris" "īrētur" "īrēmur" "īrēminī" "īrentur" "īrēre" nil)
+
+                             (mk-endings :conjugation-4 :fut :ind :act "iam" "iēs" "iet" "iēmus" "iētis" "ient")
+                             (mk-endings :conjugation-4 :fut :ind :pass "iar" "iēris" "iētur" "iēmur" "iēminī" "ientur" "iēre" nil)
+
+                             (mk-endings :conjugation-4 :perf :ind :act "us sum" "us es" "us est" "ī sumus" "ī estis" "ī sunt")
+                             (mk-endings :conjugation-4 :perf :subj :act "us sim" "us sīs" "us sit" "ī sīmus" "ī sītis" "ī sint")
+
+                             (mk-endings :conjugation-4 :plup :ind :act "us eram" "us erās" "us erat" "ī erāmus" "ī erātis" "ī erant")
+                             (mk-endings :conjugation-4 :plup :subj :act "us essem" "us essēs" "us esset" "ī essēmus" "ī essētis" "ī essent")
+
+                             (mk-endings :conjugation-4 :futperf :ind :act "us erō" "us eris" "us erit" "ī erimus" "ī eritis" "ī erunt")
+
+                             (mk-endings :conjugation-4 :pres :imperat :act nil "ī" nil nil "īte" nil)
+
+                             ;; 5
+                             (mk-endings :conjugation-5 :pres :ind :act "iō" "is" "it" "imus" "itis" "iunt")
+                             (mk-endings :conjugation-5 :pres :subj :act "iam" "iās" "iat" "iāmus" "iātis" "iant")
+                             (mk-endings :conjugation-5 :pres :ind :pass  "ior" "eris" "itur" "imur" "iminī" "iuntur" "ere" nil)
+                             (mk-endings :conjugation-5 :pres :subj :pass "iar" "iāris" "iātur" "iāmur" "iāminī" "iantur" "iāre" nil)
+
+                             (mk-endings :conjugation-5 :imperf :ind :act "iēbam" "iēbās" "iēbat" "iēbāmus" "iēbātis" "iēbant")
+                             (mk-endings :conjugation-5 :imperf :subj :act "erem" "erēs" "eret" "erēmus" "erētis" "erent")
+                             (mk-endings :conjugation-5 :imperf :ind :pass "iēbar" "iēbāris" "iēbātur" "iēbāmur" "iēbāminī" "iēbantur" "iēbāre" nil)
+                             (mk-endings :conjugation-5 :imperf :subj :pass "erer" "erēris" "erētur" "erēmur" "erēminī" "erentur" "erēre" nil)
+
+                             (mk-endings :conjugation-5 :fut :ind :act "iam" "iēs" "iet" "iēmus" "iētis" "ient")
+                             (mk-endings :conjugation-5 :fut :ind :pass "iar" "iēris" "iētur" "iēmur" "iēminī" "ientur" "iēre" nil)
+
+                             (mk-endings :conjugation-5 :perf :ind :act "us sum" "us es" "us est" "ī sumus" "ī estis" "ī sunt")
+                             (mk-endings :conjugation-5 :perf :subj :act "us sim" "us sīs" "us sit" "ī sīmus" "ī sītis" "ī sint")
+
+                             (mk-endings :conjugation-5 :plup :ind :act "us eram" "us erās" "us erat" "ī erāmus" "ī erātis" "ī erant")
+                             (mk-endings :conjugation-5 :plup :subj :act "us essem" "us essēs" "us esset" "ī essēmus" "ī essētis" "ī essent")
+
+                             (mk-endings :conjugation-5 :futperf :ind :act "us erō" "us eris" "us erit" "ī erimus" "ī eritis" "ī erunt")
+
+                             (mk-endings :conjugation-5 :pres :imperat :act nil "e" nil nil "ite" nil)
+                             ])
+
 
 (defn stem [form ending]
   "Returns form with the ending removed. Returns form when does not end with supplied ending. Returns nil when form is nil."
@@ -400,6 +523,9 @@
 (defn generate-deponent-analyses [verb-entry]
   (generate-analyses verb-entry deponent-endings))
 
+(defn generate-semi-deponent-analyses [verb-entry]
+  (generate-analyses verb-entry semi-deponent-endings))
+
 
 (defn generate-verb-analyses [verb-entry-list]
   "Uses the core latin lexicon verb entries: for each verb entry, and analysis is created for each possible
@@ -411,7 +537,7 @@
         (= :deponent (:deponent-type %))
        (generate-deponent-analyses %)
         (= :semi-deponent (:deponent-type %))
-        nil
+        (generate-semi-deponent-analyses %)
         :else (generate-regular-analyses %))
     verb-entry-list))
 
