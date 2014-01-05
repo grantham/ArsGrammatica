@@ -25,7 +25,7 @@
 ;;;; Source for a non-source form of such a combination shall include the source code for the
 ;;;; parts of clojure, clojure.contrib used as well as that of the covered work.
 ;;;; *********************************************************************************************
-(ns org.magnopere.ars.grammatica.core-test
+(ns ars.grammatica.core-test
   (:use [clojure.test]
         [ars.grammatica.core]))
 

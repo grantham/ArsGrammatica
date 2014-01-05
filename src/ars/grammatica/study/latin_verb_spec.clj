@@ -31,7 +31,7 @@
 (def verb-attributes { :person ["1st" "2nd" "3rd"]
                        :number ["sg" "pl"]
                        :tense ["imperf" "perf" "futperf" "pres" "plup" "fut"]
-                       :mood  ["ind"  "subj"] ;; ignore these moods for now: "gerundive" "inf" "supine" "imperat"
+                       :mood  ["ind"  "subj" "imperat"] ;; ignore these moods for now: "gerundive" "inf" "supine"
                        :voice ["act" "pass"]})
 
 (defrecord verb-spec [person number tense mood voice])
@@ -56,27 +56,28 @@
       (some #(nil? (first (rest %))) vs)
       (and
         (or (= "fut" (:tense vs)) (= "futperf" (:tense vs)))
-        (= "subj" (:mood vs)))))                            )
+        (= "subj" (:mood vs))))))
 
 (defn- make-filter [ak verb-spec]
-  ;; remove the current value of the verb-spec's attribute-key from the list of attribute values from which we randomly pick
+  ;; remove the current value of the verb-spec's attribute-key from
+  ;; the list of attribute values from which we randomly pick
   ;; if key is :tense and verb-spec :mood is subjunctive, do not allow fut or futperf
   ;; if key is :mood and tense is fut or futperf, do not allow subj
   (fn [att-value]
     (not
-      (or
-        (= (ak verb-spec) att-value)
-        (and (or (= "fut" att-value) (= "futperf" att-value)) (= "subj" (:mood verb-spec)))
-        (and (= "subj" att-value) (or (= "fut" (:tense verb-spec)) (= "futperf" (:tense verb-spec))))))))
+     (or
+      (= (ak verb-spec) att-value)
+      (and (or (= "fut" att-value) (= "futperf" att-value)) (= "subj" (:mood verb-spec)))
+      (and (= "subj" att-value) (or (= "fut" (:tense verb-spec)) (= "futperf" (:tense verb-spec))))))))
 
 (defn- rand-attribute-value
   ([attribute-key]
     (rand-nth (attribute-key verb-attributes)))
   ([attribute-key verb-spec]
-    (rand-nth (filter (make-filter attribute-key verb-spec) (attribute-key verb-attributes)))))
+     (rand-nth (filter (make-filter attribute-key verb-spec) (attribute-key verb-attributes)))))
 
 (defn- rand-attribute-key []
-  "Randomly chooses an attribute key of the verb spec"
+  "Randomly chooses an attribute key of the verb spec."
   (rand-nth [:person :number :tense :mood :voice]))
 
 (defn rand-verb-spec []

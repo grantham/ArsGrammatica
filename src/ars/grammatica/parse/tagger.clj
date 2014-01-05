@@ -30,7 +30,7 @@
     (:use [ars.grammatica.parse.token]
           [ars.grammatica.parse.tokenizer]
           [ars.grammatica.morphology.analysis]
-          [ars.grammatica.lexicon.latin_lexicon]))
+          [ars.grammatica.lexicon.latin-lexicon]))
 
 
 (defn tag-tokens [token-seq]

@@ -28,7 +28,7 @@
 ;;;;
 ;;;; The functions in this file provide access to Latin and Greek morphological and lexical data
 ;;;;
-(ns  ars.grammatica.lexicon.latin_lexicon
+(ns  ars.grammatica.lexicon.latin-lexicon
   (:use [clojure.core]
         [ars.grammatica.morphology.analysis])
   (:require [clojure.java [jdbc :as jdbc]]))

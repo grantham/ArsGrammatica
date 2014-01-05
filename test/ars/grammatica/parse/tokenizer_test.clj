@@ -26,7 +26,7 @@
 ;;;; parts of clojure, clojure.contrib used as well as that of the covered work.
 ;;;; *********************************************************************************************
 (ns  ^{:author "Roger Grantham"}
-  ars.grammatica.tokenizer-test
+  ars.grammatica.parse.tokenizer-test
   (:use [clojure.test]
         [ars.grammatica.parse.tokenizer]))
 

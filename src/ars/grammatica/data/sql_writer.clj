@@ -26,7 +26,7 @@
 ;;;; parts of clojure, clojure.contrib used as well as that of the covered work.
 ;;;; *********************************************************************************************
 ;;;
-;;; This pile of code uses the latin-lexicon-generator to genrate lexicon entryies, then writes them to a
+;;; This pile of code uses the latin-lexicon-generator to generate lexicon entries, then writes them to a
 ;;; SQL file which can be imported into Derby.
 ;;;
 (ns  ^{:author "Roger Grantham"}

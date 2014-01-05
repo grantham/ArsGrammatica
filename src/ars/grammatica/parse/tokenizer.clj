@@ -32,9 +32,7 @@
         [ars.grammatica.parse.token])
   (:require [clojure.string :as s]))
 
-(declare normalize-latin)
-
-
+;(declare normalize-latin)
 
 (def normalizer {:latin normalize-latin
                  :greek #(%)

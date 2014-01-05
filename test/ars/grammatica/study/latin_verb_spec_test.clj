@@ -54,13 +54,13 @@
     ;; run permute enough times to be satisfied that subj fut or subj future perfect is never created
     (try-permutations vs 1000)))
 
-
+;; ### filter removed all new vals! AK:  :mood , verb-spec #ars.grammatica.study.latin_verb_spec.verb-spec{:person 1st, :number sg, :tense fut, :mood ind, :voice act}
 (deftest permute-future-test
   (let [vs (make-verb-spec "1st" "sg" "fut" "ind" "act")]
     ;; run permute enough times to be satisfied that subj fut or subj future perfect is never created
     (try-permutations vs 1000)))
 
-
+;;### filter removed all new vals! AK:  :mood , verb-spec #ars.grammatica.study.latin_verb_spec.verb-spec{:person 1st, :number sg, :tense futperf, :mood ind, :voice act}
 (deftest permute-future-perfect-test
   (let [vs (make-verb-spec "1st" "sg" "futperf" "ind" "act")]
     ;; run permute enough times to be satisfied that subj fut or subj future perfect is never created
