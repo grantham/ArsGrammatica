@@ -35,7 +35,7 @@
   :dependencies [[org.clojure/clojure "1.5.1"]
                  [org.clojure/java.jdbc "0.1.1"]
                  [jline/jline "1.0"]
-                 [org.apache.derby/derby "10.8.2.2"]
+                 [org.apache.derby/derby "10.10.1.1"]
                  [org.clojure/tools.cli "0.2.1"]]
   :aot [ars.grammatica.core]
   :main ars.grammatica.core)

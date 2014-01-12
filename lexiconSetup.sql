@@ -39,4 +39,5 @@
 
 connect 'jdbc:derby:resources/lexicon;create=true';
 run 'resources/sql/latin_lexicon.sql';
+run 'resources/sql/create_latin_morph_table.sql';
 exit;

@@ -33,7 +33,7 @@
         [ars.grammatica.morphology.analysis])
   (:require [clojure.java [jdbc :as jdbc]]))
 
-(declare prepare-ro-db)
+;;(declare prepare-ro-db)
 
 ;; see http://db.apache.org/derby/docs/10.5/devguide/devguide-single.html#cdevdeploy15325
 (defn prepare-ro-db []
@@ -57,19 +57,19 @@
 (defn fetch-analyses [form]
   "Accepts a word form (which has already been orthographically normalized and returns a list of zero or more analyses."
   (jdbc/with-connection db
-    (jdbc/with-query-results rs [(str "SELECT a.form, a.lemma, a.pos, a.person, a.number, a.tense, a.mood, a.voice, "
-                                      "a.gender, a.gcase, a.degree, b.definition FROM ARS.morphology a INNER JOIN "
-                                      "ARS.lexicon b ON a.lemma = b.lemma WHERE a.form = '" form "'")]
+    (jdbc/with-query-results rs [(str "SELECT a.form, a.lemma, a.pos, a.person, a.num, a.tense, a.mood, a.voice, "
+                                      "a.gender, a.gcase, a.degree, b.definition FROM ARS.latin_morphology a INNER JOIN "
+                                      "ARS.latin_lexicon b ON a.lemma = b.lemma WHERE a.form = '" form "'")]
       (doall (map make-analysis rs)))))
 
 (defn fetch-verb-analyses [lang_id lemma person number tense mood voice]
   (jdbc/with-connection db
-    (jdbc/with-query-results rs [(str "SELECT a.form, a.lemma, a.pos, a.person, a.number, a.tense, a.mood, a.voice, "
-                                      "a.gender, a.gcase, a.degree, b.definition FROM ARS.morphology a INNER JOIN "
-                                      "ARS.lexicon b ON a.lemma = b.lemma "
+    (jdbc/with-query-results rs [(str "SELECT a.form, a.lemma, a.pos, a.person, a.num, a.tense, a.mood, a.voice, "
+                                      "a.gender, a.gcase, a.degree, b.definition FROM ARS.latin_morphology a INNER JOIN "
+                                      "ARS.latin_lexicon b ON a.lemma = b.lemma "
                                       "WHERE a.lemma = '" lemma "' "
                                       "AND a.person = '" person "' "
-                                      "AND a.number = '" number "' "
+                                      "AND a.num = '" number "' "
                                       "AND a.tense = '" tense "' "
                                       "AND a.mood = '" mood "' "
                                       "AND a.voice = '" voice "' "
