@@ -1,5 +1,5 @@
 ;;;; *********************************************************************************************
-;;;; Copyright (C) 2012 Roger Grantham
+;;;; Copyright (C) 2014 Roger Grantham
 ;;;;
 ;;;; All rights reserved.
 ;;;;
@@ -30,20 +30,29 @@
 ;;;; shall include the source code for the parts of clojure,
 ;;;; clojure.contrib, used as well as that of the covered work.
 ;;;; ***********************************************************************
-(defproject ArsGrammatica "0.0.1-SNAPSHOT"
-  :description "Ars Grammatica provides Latin morphological and syntactical tutoring and practice."
-  :dependencies [[org.clojure/clojure "1.5.1"]
-                 [org.clojure/java.jdbc "0.2.3"]
-                 [jline/jline "1.0"]
-                 [org.apache.derby/derby "10.10.1.1"]
-                 [org.clojure/tools.cli "0.2.1"]]
-  :aliases {"generate" ["run" "-m" "ars.grammatica.build-tasks" "-s" "resources/sql/latin_lexicon.sql" "-d"]}
-  :aot [ars.grammatica.core ]
-  :main ars.grammatica.core)
+(ns ^{:author "Roger Grantham"}
+  ars.grammatica.build-tasks
+  (:use [clojure.tools.cli]
+        [ars.grammatica.data.sql-writer]))
 
-;; TODO: add a build set to create the database if it doesn't exist:
-;; 0. Check whether the resources/lexicon database exists, if not:
-;; 1. decompress the *.sql.tar.gz scripts under resources/sql
-;; 2. invoke $ ij lexiconSetup.sql
-;; 3. delete resources/lexicon/tmp if it exists
-
+(defn -main [& args]
+  (println "Ars Grammatica build tasks")
+  (let [[options supplied-args banner]
+        (clojure.tools.cli/cli args
+                               ["-h" "--help"
+                                "Print this help message."
+                                :default false :flag true ]
+                               ["-s" "--generate-sql"
+                                "generates the SQL to populate the lexicon and morphology data. Supply a string path to where the SQL is to be written."
+                                :default false :flag false]
+                               ["-d" "--generate-db"
+                                "loads the generated SQL into a new derby database to be pacakged with the app."
+                                :default false :flag true])]
+    
+    (when (:help options)
+      (println banner))
+    (when (:generate-sql options)
+      (create-latin-lexicon-sql (:generate-sql options)))
+    (when (:generate-db options)
+      println "--generate-db not yet supported.")
+    (println options)))

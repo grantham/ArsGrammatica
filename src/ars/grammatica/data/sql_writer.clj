@@ -38,7 +38,10 @@
 
 (declare write-adjectives write-adverbs write-conjunctions write-prepositions write-verbs)
 
-(def create-table-path "sql/create_lat_lex_table.sql")
+(def create-table-path
+  "This is the path to a file containing the SQL used to create the
+table to which we are writing lexicon entries."
+  "sql/create_lat_lex_table.sql")
 
 
 
@@ -62,23 +65,6 @@
 
 (defn- conjugation-to-string [conjugation]
   (get conjugations conjugation))
-
-
-(defn create-latin-lexicon-sql [^String path]
-  "Writes the sql require to create the latin lexicon database table to a file described by path."
-  (let [out-file (File. path)]
-    (when (not (.exists out-file))
-      (.createNewFile out-file))
-    (with-open [bw (BufferedWriter. (FileWriter. out-file))]
-      (.write bw (slurp-resource create-table-path))
-      (.newLine bw)
-      (.flush bw)
-      (write-adjectives bw)
-      (write-adverbs bw)
-      (write-conjunctions bw)
-      (write-prepositions bw)
-      (write-nouns bw)
-      (write-verbs bw))))
 
 (defn q
   ([s]
@@ -186,5 +172,19 @@
     make-verbs
     write-verb))
 
-
+(defn create-latin-lexicon-sql [^String path]
+  "Writes the sql require to create the latin lexicon database table to a file described by path."
+  (let [out-file (File. path)]
+    (when (not (.exists out-file))
+      (.createNewFile out-file))
+    (with-open [bw (BufferedWriter. (FileWriter. out-file))]
+      (.write bw (slurp-resource create-table-path))
+      (.newLine bw)
+      (.flush bw)
+      (write-adjectives bw)
+      (write-adverbs bw)
+      (write-conjunctions bw)
+      (write-prepositions bw)
+      (write-nouns bw)
+      (write-verbs bw))))
 
