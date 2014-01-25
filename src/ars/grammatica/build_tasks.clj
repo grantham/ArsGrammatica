@@ -33,7 +33,15 @@
 (ns ^{:author "Roger Grantham"}
   ars.grammatica.build-tasks
   (:use [clojure.tools.cli]
+        [clojure.java.io :as io]
         [ars.grammatica.data.sql-writer]))
+
+(defn run-ij [path-to-script]
+  "start ij and executes the given sql script"
+  (println "executing script " path-to-script)
+  (.. Runtime getRuntime (exec (into-array String ["ij" path-to-script])))
+  (println "Please ensure DB tmp directory does not exist before preparing embedded r/o DB"))
+
 
 (defn -main [& args]
   (println "Ars Grammatica build tasks")
@@ -54,5 +62,5 @@
     (when (:generate-sql options)
       (create-latin-lexicon-sql (:generate-sql options)))
     (when (:generate-db options)
-      println "--generate-db not yet supported.")
-    (println options)))
+      (run-ij "./lexiconSetup.sql"))
+    (println "generation tasks complete")))
