@@ -1,4 +1,4 @@
-;;;; *********************************************************************************************
+;;;; ***********************************************************************
 ;;;; Copyright (C) 2012 Roger Grantham
 ;;;;
 ;;;; All rights reserved.
@@ -33,10 +33,10 @@
 (defproject ArsGrammatica "0.0.1-SNAPSHOT"
   :description "Ars Grammatica provides Latin morphological and syntactical tutoring and practice."
   :dependencies [[org.clojure/clojure "1.5.1"]
-                 [org.clojure/java.jdbc "0.2.3"]
+                 [org.clojure/java.jdbc "0.3.5"]
                  [jline/jline "1.0"]
                  [org.apache.derby/derby "10.10.1.1"]
-                 [org.clojure/tools.cli "0.2.1"]]
+                 [org.clojure/tools.cli "0.3.1"]]
   :aliases {"generate" ["run" "-m" "ars.grammatica.build-tasks" "-s" "resources/sql/latin_lexicon.sql" "-d"]}
   :aot [ars.grammatica.core ]
   :main ars.grammatica.core)
